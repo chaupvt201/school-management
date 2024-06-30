@@ -139,12 +139,28 @@ class ExaminationsController extends Controller
         $data['header_title'] = 'Marks Register'; 
         return view('admin.examinations.marks_register', $data); 
     } 
-    public function submit_marks_register(Request $request){
+    public function marks_register_teacher(Request $request){
+        $teacher_id = DB::table('teacher')->where('user_id', '=', Auth::user()->id)->value('id'); 
+        $data['getClass'] = ClassTimetableModel::getMyClassSubjectGroup($teacher_id); 
+        $data['getExam'] = ExamScheduleModel::getExamTeacher($teacher_id); 
+        if(!empty($request->get('exam_id')) && !empty($request->get('class_id'))){
+            $data['getSubject'] = ExamScheduleModel::getSubject($request->get('exam_id'), $request->get('class_id')); 
+            $data['getStudent'] = Student::getStudentClass($request->get('class_id')); 
+        }
+        $data['header_title'] = 'Marks Register'; 
+        return view('teacher.marks_register', $data); 
+    }
+    public function submit_marks_register(Request $request){ 
+        $validation = 0; 
         if(!empty($request->mark)){
-            foreach($request->mark as $mark){
+            foreach($request->mark as $mark){ 
+                $getExamSchedule = ExamScheduleModel::getSingle($mark['id']); 
+                $full_marks = $getExamSchedule->full_marks; 
                 $class_work = !empty($mark['class_work']) ? $mark['class_work'] : 0; 
                 $test_work = !empty($mark['test_work']) ? $mark['test_work'] : 0; 
                 $exam = !empty($mark['exam']) ? $mark['exam'] : 0; 
+                $total_mark = ($class_work + $test_work + $exam)/3; 
+                if($full_marks >= $total_mark && $class_work <=100 && $test_work <=100 && $exam <=100){
                 $getMark = MarksRegisterModel::CheckAlreadyMark($request->student_id,$request->exam_id,$request->class_id,$mark['subject_id']); 
                 if(!empty($getMark)){
                     $marksregister = $getMark; 
@@ -159,9 +175,51 @@ class ExaminationsController extends Controller
                 $marksregister->test_work = $test_work; 
                 $marksregister->exam = $exam; 
                 $marksregister->save(); 
+            } else{
+                $validation = 1; 
+            }
             }
         } 
-        $json['message'] = "Mark Register saved successfuly"; 
+        if($validation == 0){
+            $json['message'] = "Mark Register saved successfuly"; 
+        } else{
+            $json['message'] = "Mark Register saved successfuly Some Subject mark greater than full mark"; 
+        }
+       
+        echo(json_encode($json)); 
+    } 
+    public function single_submit_marks_register(Request $request){ 
+        $id = $request->id; 
+        $getExamSchedule = ExamScheduleModel::getSingle($id); 
+        $full_marks = $getExamSchedule->full_marks; 
+
+        $class_work = !empty($request->class_work) ? $request->class_work : 0; 
+        $test_work = !empty($request->test_work) ? $request->test_work : 0; 
+        $exam = !empty($request->exam) ? $request->exam : 0; 
+        $total_mark = ($class_work + $test_work + $exam)/3; 
+        if($full_marks >= $total_mark && $class_work <=100 && $test_work <= 100 && $exam <= 100){
+            $getMark = MarksRegisterModel::CheckAlreadyMark($request->student_id,$request->exam_id,$request->class_id,$request->subject_id); 
+            if(!empty($getMark)){
+                $marksregister = $getMark; 
+            }else{
+            $marksregister = new MarksRegisterModel; 
+            } 
+            $marksregister->student_id = $request->student_id; 
+            $marksregister->exam_id = $request->exam_id; 
+            $marksregister->class_id = $request->class_id; 
+            $marksregister->subject_id = $request->subject_id; 
+            $marksregister->class_work = $class_work; 
+            $marksregister->test_work = $test_work; 
+            $marksregister->exam = $exam; 
+            $marksregister->save(); 
+    
+            $json['message'] = "Mark Register saved successfuly"; 
+        } 
+        else{
+            $json['message'] = "Your total mark greater than full mark"; 
+        }
+
+       
         echo(json_encode($json)); 
     }
     public function MyExamTimetable(){ 

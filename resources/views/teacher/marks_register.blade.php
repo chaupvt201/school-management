@@ -36,7 +36,7 @@
                     <select class="form-control" name="exam_id" required>
                     <option value="">Select</option> 
                     @foreach($getExam as $exam) 
-                    <option {{(Request::get('exam_id') == $exam->id) ? 'selected': '' }} value="{{ $exam->id}}">{{ $exam->name}}</option>
+                    <option {{(Request::get('exam_id') == $exam->exam_id) ? 'selected': '' }} value="{{ $exam->exam_id}}">{{ $exam->exam_name}}</option>
                     @endforeach 
                     </select>
                   </div> 
@@ -45,7 +45,7 @@
                     <select class="form-control" name="class_id" required>
                         <option value="">Select</option> 
                         @foreach($getClass as $class) 
-                        <option {{ (Request::get('class_id') == $class->id) ? 'selected': ''}} value="{{ $class->id}}">{{ $class->name}}</option>
+                        <option {{ (Request::get('class_id') == $class->class_id) ? 'selected': ''}} value="{{ $class->class_id}}">{{ $class->class_name}}</option>
                         @endforeach 
                     </select>
                   </div>
@@ -219,7 +219,7 @@
         e.preventDefault(); 
         $.ajax({
             type: "POST", 
-            url: "{{url('admin/examinations/submit_marks_register')}}", 
+            url: "{{url('teacher/submit_marks_register')}}", 
             data: $(this).serialize(), 
             dataType: "json", 
             success: function(data) {
@@ -241,7 +241,7 @@
 
         $.ajax({
             type: "POST", 
-            url: "{{url('admin/examinations/single_submit_marks_register')}}", 
+            url: "{{url('teacher/single_submit_marks_register')}}", 
             data: { 
                 '_token': "{{ csrf_token() }}", 
                 id: id, 

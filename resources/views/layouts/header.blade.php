@@ -349,6 +349,14 @@
               </p>
             </a>
           </li> 
+          <li class="nav-item">
+            <a href="{{ url('teacher/marks_register')}}" class="nav-link @if(Request::segment(2) == 'marks_register') active @endif">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+                Mark Register 
+              </p>
+            </a>
+          </li> 
 
           @elseif(Auth::user()->user_type ==3) 
           <li class="nav-item">
