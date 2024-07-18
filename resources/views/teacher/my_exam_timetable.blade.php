@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>My Exam Timetable</h1>
+            <h1>Lịch thi của tôi</h1>
 
       </div><!-- /.container-fluid -->
     </section>
@@ -51,13 +51,13 @@
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>Subject Name</th> 
-                      <th>Exam Date</th> 
-                      <th>Start Time</th> 
-                      <th>End Time</th> 
-                      <th>Room Number</th> 
-                      <th>Full Marks</th> 
-                      <th>Passing Marks</th> 
+                      <th>Môn học</th> 
+                      <th>Ngày thi</th> 
+                      <th>Thời gian bắt đầu</th> 
+                      <th>Thời gian kết thúc</th> 
+                      <th>Phòng thi</th> 
+                      <th>Điểm tối đa</th> 
+                      <th>Điểm đạt tối thiếu</th> 
                     </tr>
                   </thead>
                   <tbody> 

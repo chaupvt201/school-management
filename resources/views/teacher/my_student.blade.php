@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>My Student List</h1>
+            <h1>Danh sách học viên của tôi</h1>
           </div> 
           
         </div>
@@ -36,22 +36,22 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Student List</h3>
+                <h3 class="card-title">Danh sách học viên</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0" style="overflow: auto;">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>#</th> 
-                      <th>Profile Pic</th>
-                      <th>Name</th>
+                      <th>ID</th> 
+                      <th>Ảnh đại diện</th>
+                      <th>Họ tên</th>
                       <th>Email</th> 
-                      <th>Class</th> 
-                      <th>Gender</th> 
-                      <th>Date of Birth</th> 
-                      <th>Mobile Number</th> 
-                      <th>Created Date</th> 
+                      <th>Lớp</th> 
+                      <th>Giới tính</th> 
+                      <th>Ngày sinh</th> 
+                      <th>Số điện thoại</th> 
+                      <th>Ngày tạo</th> 
                     </tr>
                   </thead>
                   <tbody>

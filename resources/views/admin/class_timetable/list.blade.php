@@ -7,10 +7,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Class Timetable</h1>
+            <h1>Thời khóa biểu</h1>
           </div> 
           <div class="col-sm-6" style="text-align: right;"> 
-          <a href="{{ url('admin/class_timetable/add')}}" class="btn btn-primary">Add New Class Timetable</a> 
+          <a href="{{ url('admin/class_timetable/add')}}" class="btn btn-primary">Thêm lịch học mới</a> 
           </div>
           
         </div>
@@ -29,23 +29,23 @@
           
             <div class="card card-primary"> 
             <div class="card-header">
-                <h3 class="card-title">Search Assign Subject</h3>
+                <h3 class="card-title">Tìm kiếm</h3>
               </div>
               <form method="get" action=""> 
                 <div class="card-body"> 
                   <div class="row">
                 <div class="form-group col-md-3">
-                    <label>Class Name</label>
+                    <label>Tên lớp</label>
                     <input type="text" class="form-control" value="{{ Request::get('class_name') }}" name="class_name" placeholder="Class Name">
                   </div> 
                   <div class="form-group col-md-3">
-                    <label>Subject Name</label>
+                    <label>Tên môn</label>
                     <input type="text" class="form-control" value="{{ Request::get('subject_name') }}" name="subject_name" placeholder="Subject Name">
                   </div>
 
                   <div class="form-group col-md-3">
-                    <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Search</button> 
-                    <a href="{{ url('admin/assign_subject/list')}}" class="btn btn-success" style="margin-top: 30px;">Reset</a>
+                    <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Tìm kiếm</button> 
+                    <a href="{{ url('admin/assign_subject/list')}}" class="btn btn-success" style="margin-top: 30px;">Xóa</a>
                   </div>
                   </div>
                   
@@ -67,9 +67,9 @@
             @include('message')
             <!-- /.card -->
 
-            <div class="card">
+            <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Assign Subject List</h3>
+                <h3 class="card-title">Thời khóa biểu</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
@@ -81,7 +81,7 @@
                         @foreach($getRecord as $value) 
                         @if($value->day == "Monday")
                         <div class="btn-group text-start">
-                          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> 
+                          <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> 
                             <p style="margin-bottom: 0px;"><i class="bi bi-book"></i>
                             {{ $value->subject_name}}
                             </p> 
@@ -111,7 +111,7 @@
                         @foreach($getRecord as $value) 
                         @if($value->day == "Tuesday")
                         <div class="btn-group text-start">
-                          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> 
+                          <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> 
                             <p style="margin-bottom: 0px;"><i class="bi bi-book"></i>
                             {{ $value->subject_name}}
                             </p> 

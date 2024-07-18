@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Marks Register </h1>
+            <h1>Nhập điểm học viên</h1>
           </div> 
           
         </div>
@@ -26,13 +26,13 @@
           
             <div class="card card-primary"> 
             <div class="card-header">
-                <h3 class="card-title">Search Marks Register</h3>
+                <h3 class="card-title">Tìm kiếm</h3>
               </div>
               <form method="get" action=""> 
                 <div class="card-body"> 
                   <div class="row">
                 <div class="form-group col-md-3">
-                    <label>Exam Name</label>
+                    <label>Tên kỳ thi</label>
                     <select class="form-control" name="exam_id" required>
                     <option value="">Select</option> 
                     @foreach($getExam as $exam) 
@@ -41,7 +41,7 @@
                     </select>
                   </div> 
                   <div class="form-group col-md-3">
-                    <label>Class</label> 
+                    <label>Tên lớp</label> 
                     <select class="form-control" name="class_id" required>
                         <option value="">Select</option> 
                         @foreach($getClass as $class) 
@@ -50,8 +50,8 @@
                     </select>
                   </div>
                   <div class="form-group col-md-3">
-                    <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Search</button> 
-                    <a href="{{ url('admin/examinations/marks_register')}}" class="btn btn-success" style="margin-top: 30px;">Reset</a>
+                    <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Tìm kiếm</button> 
+                    <a href="{{ url('admin/examinations/marks_register')}}" class="btn btn-success" style="margin-top: 30px;">Xóa</a>
                   </div>
                   </div>
                   
@@ -76,7 +76,7 @@
             @if(!empty($getSubject) && !empty($getSubject->count()))
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Marks Register</h3>
+                <h3 class="card-title">Nhập điểm</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0" style="overflow: auto;">
@@ -117,7 +117,7 @@
                         $totalPassingMark = $totalPassingMark + $subject->passing_marks; 
                         $getMark = $subject->getMark($student->id, Request::get('exam_id'), Request::get('class_id'), $subject->subject_id); 
                         if(!empty($getMark)){
-                            $totalMark = ($getMark->class_work + $getMark->test_work + $getMark->exam)/3; 
+                            $totalMark = $getMark->class_work; 
                         } 
                         $totalStudentMark = $totalStudentMark + $totalMark; 
                         @endphp 
@@ -142,8 +142,8 @@
                             @if(!empty($getMark)) 
                             <div style="margin-bottom: 10px;"> 
                             <b> Ghi chu </b> <br/>
-                            <b>Total Mark: </b> {{ round($totalMark, 2) }} <br/> 
-                            <b>Passing Mark: </b> {{ $subject->passing_marks }} <br/> 
+                            <b>Tổng Điểm: </b> {{ round($totalMark, 2) }} <br/> 
+                            <b>Điểm đạt: </b> {{ $subject->passing_marks }} <br/> 
                             @if($totalMark >= $subject->passing_marks) 
                             Ket qua: <span style="color: green; font-weight: bold;">Dat</span>
                             @else 
@@ -160,20 +160,20 @@
                         @endphp 
                         @endforeach 
                         <td style="min-width: 250px;">
-                            <button type="submit" class="btn btn-success">Save</button> 
+                            <button type="submit" class="btn btn-success">Lưu lại</button> 
                             @if(!empty($totalStudentMark))
                             <br/> 
-                            <b>Total Student Mark: </b> {{$totalStudentMark}} 
+                            <b>Điểm tổng kết </b> {{$totalStudentMark}} 
                             <br/> 
-                            <b>Total Full Mark: </b> {{$totalFullMarks}} 
+                            <b>Tổng điểm của các môn: </b> {{$totalFullMarks}} 
                             <br/> 
-                            <b>Total Passing Mark: </b> {{$totalPassingMark}} 
+                            <b>Tổng điểm qua của các môn: </b> {{$totalPassingMark}} 
                             <br/> 
                             @php 
                             $percentage = ($totalStudentMark * 100) / $totalFullMarks; 
                             @endphp 
                             <br/> 
-                            <b>Percentage: </b> {{ round($percentage, 2) }}% 
+                            <b>Phần trăm: </b> {{ round($percentage, 2) }}% 
                             <br/> 
                             @if($pass_fail_vali == 0) 
                             Ket qua: <span style="color: green; font-weight: bold;">Dat</span>
@@ -236,8 +236,8 @@
         var class_id = $(this).attr('data-class'); 
         var id = $(this).attr('data-schedule'); 
         var class_work = $('#class_work_'+student_id+subject_id).val();
-        var test_work = $('#test_work_'+student_id+subject_id).val();
-        var exam = $('#exam_'+student_id+subject_id).val(); 
+       // var test_work = $('#test_work_'+student_id+subject_id).val();
+       // var exam = $('#exam_'+student_id+subject_id).val(); 
 
         $.ajax({
             type: "POST", 
@@ -250,8 +250,8 @@
                 exam_id: exam_id, 
                 class_id: class_id, 
                 class_work: class_work, 
-                test_work: test_work, 
-                exam: exam, 
+               // test_work: test_work, 
+               // exam: exam, 
             }, 
             dataType: "json", 
             success: function(data) {

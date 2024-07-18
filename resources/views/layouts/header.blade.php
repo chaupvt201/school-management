@@ -134,7 +134,7 @@
             <a href="{{ url('admin/dashboard')}}" class="nav-link @if(Request::segment(2) == 'dashboard') active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard 
+                Trang chủ 
                 
               </p>
             </a>
@@ -143,7 +143,7 @@
             <a href="{{ url('admin/admin/list')}}" class="nav-link @if(Request::segment(2) == 'admin') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                Admin 
+                Quản lý người quản lý 
               </p>
             </a>
           </li> 
@@ -151,7 +151,7 @@
             <a href="{{ url('admin/teacher/list')}}" class="nav-link @if(Request::segment(2) == 'teacher') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                Teacher 
+                Quản lý giáo viên 
               </p>
             </a>
           </li> 
@@ -159,7 +159,7 @@
             <a href="{{ url('admin/student/list')}}" class="nav-link @if(Request::segment(2) == 'student') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                Student 
+                Quản lý học viên 
               </p>
             </a>
           </li> 
@@ -170,7 +170,7 @@
            || Request::segment(2) == 'class_timetable' ) active @endif" >
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Academics
+                Quản lý học tập 
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -178,25 +178,25 @@
               <li class="nav-item">
                 <a href="{{ url('admin/class/list')}}" class="nav-link @if(Request::segment(2) == 'class') active @endif">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Class</p>
+                  <p>Quản lý lớp học</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ url('admin/subject/list')}}" class="nav-link @if(Request::segment(2) == 'subject') active @endif">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Subject</p>
+                  <p>Quản lý môn học </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ url('admin/assign_subject/list')}}" class="nav-link @if(Request::segment(2) == 'assign_subject') active @endif">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Assign Subject</p>
+                  <p>Quản lý đăng ký môn học</p>
                 </a>
               </li> 
               <li class="nav-item">
                 <a href="{{ url('admin/class_timetable/list')}}" class="nav-link @if(Request::segment(2) == 'class_timetable') active @endif">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Class Timetable</p>
+                  <p>Quản lý lịch học</p>
                 </a>
               </li>
             </ul>
@@ -206,7 +206,7 @@
             <a href="#" class="nav-link @if(Request::segment(2) == 'examinations' ) active @endif" >
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Examinations
+                Quản lý kiểm tra 
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -214,19 +214,19 @@
               <li class="nav-item">
                 <a href="{{ url('admin/examinations/exam/list')}}" class="nav-link @if(Request::segment(3) == 'exam') active @endif">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Exam</p>
+                  <p>Quản lý kỳ thi</p>
                 </a>
               </li> 
               <li class="nav-item">
                 <a href="{{ url('admin/examinations/exam_schedule')}}" class="nav-link @if(Request::segment(3) == 'exam_schedule') active @endif">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Exam Schedule</p>
+                  <p>Quản lý lịch kiểm tra</p>
                 </a>
               </li> 
               <li class="nav-item">
                 <a href="{{ url('admin/examinations/marks_register')}}" class="nav-link @if(Request::segment(3) == 'marks_register') active @endif">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Marks Register</p>
+                  <p>Nhập điểm học viên</p>
                 </a>
               </li> 
             </ul>
@@ -268,7 +268,7 @@
             <a href="{{ url('admin/account')}}" class="nav-link @if(Request::segment(2) == 'account') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                My Account 
+                Quản lý tài khoản 
               </p>
             </a>
           </li> 
@@ -276,7 +276,7 @@
             <a href="{{ url('admin/change_password')}}" class="nav-link @if(Request::segment(2) == 'change_password') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                Change Password 
+                Đổi mật khẩu 
               </p>
             </a>
           </li> 

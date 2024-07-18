@@ -7,10 +7,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Exam Schedule </h1>
+            <h1>Lịch thi </h1>
           </div> 
           <div class="col-sm-6" style="text-align: right;"> 
-          <a href="{{ url('admin/examinations/exam/add')}}" class="btn btn-primary">Add New Exam</a> 
+          <a href="{{ url('admin/examinations/exam/add')}}" class="btn btn-primary">Thêm mới lịch thi</a> 
           </div> 
           
         </div>
@@ -29,13 +29,13 @@
           
             <div class="card card-primary"> 
             <div class="card-header">
-                <h3 class="card-title">Search Exam Schedule</h3>
+                <h3 class="card-title">Tìm kiếm lịch thi</h3>
               </div>
               <form method="get" action=""> 
                 <div class="card-body"> 
                   <div class="row">
                 <div class="form-group col-md-3">
-                    <label>Exam Name</label>
+                    <label>Tên kỳ thi</label>
                     <select class="form-control" name="exam_id" required>
                     <option value="">Select</option> 
                     @foreach($getExam as $exam) 
@@ -44,7 +44,7 @@
                     </select>
                   </div> 
                   <div class="form-group col-md-3">
-                    <label>Class</label> 
+                    <label>Tên lớp</label> 
                     <select class="form-control" name="class_id" required>
                         <option value="">Select</option> 
                         @foreach($getClass as $class) 
@@ -53,8 +53,8 @@
                     </select>
                   </div>
                   <div class="form-group col-md-3">
-                    <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Search</button> 
-                    <a href="{{ url('admin/examinations/exam_schedule')}}" class="btn btn-success" style="margin-top: 30px;">Reset</a>
+                    <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Tìm kiếm</button> 
+                    <a href="{{ url('admin/examinations/exam_schedule')}}" class="btn btn-success" style="margin-top: 30px;">Xóa</a>
                   </div>
                   </div>
                   
@@ -81,22 +81,22 @@
                 {{csrf_field()}} 
                 <input type="hidden" name="exam_id" value="{{ Request::get('exam_id')}}"> 
                 <input type="hidden" name="class_id" value="{{ Request::get('class_id')}}">
-            <div class="card">
+            <div class="card card-success">
               <div class="card-header">
-                <h3 class="card-title">Exam List</h3>
+                <h3 class="card-title">Danh sách kỳ thi</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>Subject Name</th>
-                      <th>Date</th>
-                      <th>Start Time</th>
-                      <th>End Time</th> 
-                      <th>Room Number</th> 
-                      <th>Full Marks</th> 
-                      <th>Passing Marks</th>
+                      <th>Tên môn thi</th>
+                      <th>Ngày thi</th>
+                      <th>Thời gian bắt đầu</th>
+                      <th>Thời gian kết thúc</th> 
+                      <th>Phòng thi</th> 
+                      <th>Điểm tối đa</th> 
+                      <th>Điểm đạt tối thiểu</th>
                     </tr>
                   </thead>
                   <tbody> 
@@ -134,7 +134,7 @@
                   </tbody>
                 </table> 
                 <div style="text-align: center; padding: 20px;">
-                <button class="btn btn-primary">Submit</button>
+                <button class="btn btn-success">Cập nhật</button>
                 </div>
               </div>
               <!-- /.card-body -->

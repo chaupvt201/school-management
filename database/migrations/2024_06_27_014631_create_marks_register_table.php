@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedInteger('class_id'); 
             $table->unsignedInteger('subject_id'); 
             $table->integer('class_work')->default(0); 
-            $table->integer('test_work')->default(0); 
-            $table->integer('exam')->default(0); 
+           // $table->integer('test_work')->default(0); 
+           // $table->integer('exam')->default(0); 
             $table->timestamps();
         });
     }

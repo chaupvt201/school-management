@@ -157,10 +157,10 @@ class ExaminationsController extends Controller
                 $getExamSchedule = ExamScheduleModel::getSingle($mark['id']); 
                 $full_marks = $getExamSchedule->full_marks; 
                 $class_work = !empty($mark['class_work']) ? $mark['class_work'] : 0; 
-                $test_work = !empty($mark['test_work']) ? $mark['test_work'] : 0; 
-                $exam = !empty($mark['exam']) ? $mark['exam'] : 0; 
-                $total_mark = ($class_work + $test_work + $exam)/3; 
-                if($full_marks >= $total_mark && $class_work <=100 && $test_work <=100 && $exam <=100){
+               // $test_work = !empty($mark['test_work']) ? $mark['test_work'] : 0; 
+               // $exam = !empty($mark['exam']) ? $mark['exam'] : 0; 
+                $total_mark = $class_work; 
+                if($full_marks >= $total_mark){
                 $getMark = MarksRegisterModel::CheckAlreadyMark($request->student_id,$request->exam_id,$request->class_id,$mark['subject_id']); 
                 if(!empty($getMark)){
                     $marksregister = $getMark; 
@@ -172,8 +172,8 @@ class ExaminationsController extends Controller
                 $marksregister->class_id = $request->class_id; 
                 $marksregister->subject_id = $mark['subject_id']; 
                 $marksregister->class_work = $class_work; 
-                $marksregister->test_work = $test_work; 
-                $marksregister->exam = $exam; 
+               // $marksregister->test_work = $test_work; 
+               // $marksregister->exam = $exam; 
                 $marksregister->save(); 
             } else{
                 $validation = 1; 
@@ -194,10 +194,10 @@ class ExaminationsController extends Controller
         $full_marks = $getExamSchedule->full_marks; 
 
         $class_work = !empty($request->class_work) ? $request->class_work : 0; 
-        $test_work = !empty($request->test_work) ? $request->test_work : 0; 
-        $exam = !empty($request->exam) ? $request->exam : 0; 
-        $total_mark = ($class_work + $test_work + $exam)/3; 
-        if($full_marks >= $total_mark && $class_work <=100 && $test_work <= 100 && $exam <= 100){
+       // $test_work = !empty($request->test_work) ? $request->test_work : 0; 
+       // $exam = !empty($request->exam) ? $request->exam : 0; 
+        $total_mark = $class_work; 
+        if($full_marks >= $total_mark){
             $getMark = MarksRegisterModel::CheckAlreadyMark($request->student_id,$request->exam_id,$request->class_id,$request->subject_id); 
             if(!empty($getMark)){
                 $marksregister = $getMark; 
@@ -209,8 +209,8 @@ class ExaminationsController extends Controller
             $marksregister->class_id = $request->class_id; 
             $marksregister->subject_id = $request->subject_id; 
             $marksregister->class_work = $class_work; 
-            $marksregister->test_work = $test_work; 
-            $marksregister->exam = $exam; 
+           // $marksregister->test_work = $test_work; 
+           // $marksregister->exam = $exam; 
             $marksregister->save(); 
     
             $json['message'] = "Mark Register saved successfuly"; 

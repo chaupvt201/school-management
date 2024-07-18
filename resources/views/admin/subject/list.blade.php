@@ -7,10 +7,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Subject List</h1>
+            <h1>Danh sách môn học</h1>
           </div> 
           <div class="col-sm-6" style="text-align: right;"> 
-          <a href="{{ url('admin/subject/add')}}" class="btn btn-primary">Add New Subject</a> 
+          <a href="{{ url('admin/subject/add')}}" class="btn btn-primary">Thêm môn học</a> 
           </div>
           
         </div>
@@ -29,17 +29,17 @@
           
             <div class="card card-primary"> 
             <div class="card-header">
-                <h3 class="card-title">Search Subject</h3>
+                <h3 class="card-title">Tìm môn học</h3>
               </div>
               <form method="get" action=""> 
                 <div class="card-body"> 
                   <div class="row">
                 <div class="form-group col-md-3">
-                    <label>Name</label>
+                    <label>Tên môn</label>
                     <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name" placeholder="Name">
                   </div> 
                   <div class="form-group col-md-3">
-                    <label>Subject Type</label> 
+                    <label>Loại môn</label> 
                     <select class="form-control" name="type"> 
                         <option value="">Select Type</option>
                         <option {{ (Request::get('type') == 'Theory') ? 'selected' : '' }} value="Theory">Theory</option> 
@@ -48,12 +48,12 @@
                   </div>
 
                   <div class="form-group col-md-3">
-                    <label>Date</label>
+                    <label>Ngày tạo</label>
                     <input type="date" class="form-control" value="{{ Request::get('date') }}" name="date" placeholder="date"> 
                   </div> 
                   <div class="form-group col-md-3">
-                    <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Search</button> 
-                    <a href="{{ url('admin/subject/list')}}" class="btn btn-success" style="margin-top: 30px;">Reset</a>
+                    <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Tìm kiếm</button> 
+                    <a href="{{ url('admin/subject/list')}}" class="btn btn-success" style="margin-top: 30px;">Xóa</a>
                   </div>
                   </div>
                   
@@ -75,22 +75,21 @@
             @include('message')
             <!-- /.card -->
 
-            <div class="card">
+            <div class="card card-success">
               <div class="card-header">
-                <h3 class="card-title">Subject List</h3>
+                <h3 class="card-title">Danh sách môn học</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>#</th>
-                      <th>Subject Name</th> 
-                      <th>Subject Type</th> 
-                      <th>Status</th> 
-                      <th>Created By</th> 
-                      <th>Created Date</th> 
-                      <th>Action</th> 
+                      <th>STT</th>
+                      <th>Tên môn</th> 
+                      <th>Loại môn</th> 
+                      <th>Trạng thái</th> 
+                      <th>Ngày tạo</th> 
+                      <th>Thao tác</th> 
                     </tr>
                   </thead>
                   <tbody>
@@ -106,11 +105,10 @@
                             <div class="btn btn-danger">Inactive </div>
                             @endif 
                         </td> 
-                        <td>{{ $value->created_by_name }}</td> 
                         <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td> 
                         <td>
-                        <a href="{{ url('admin/subject/edit/'.$value->id)}}" class="btn btn-primary">Edit</a> 
-                        <a href="{{url('admin/subject/delete/'.$value->id)}}" class="btn btn-danger">Delete</a>
+                        <a href="{{ url('admin/subject/edit/'.$value->id)}}" class="btn btn-warning">Sửa</a> 
+                        <a href="{{url('admin/subject/delete/'.$value->id)}}" class="btn btn-danger">Xóa</a>
                         </td>
                     </tr>
                     @endforeach 

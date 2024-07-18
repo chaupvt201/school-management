@@ -7,10 +7,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Exam List (Total: {{ $getRecord->total()}})</h1>
+            <h1>Danh sách kì thi (Total: {{ $getRecord->total()}})</h1>
           </div> 
           <div class="col-sm-6" style="text-align: right;"> 
-          <a href="{{ url('admin/examinations/exam/add')}}" class="btn btn-primary">Add New Exam</a> 
+          <a href="{{ url('admin/examinations/exam/add')}}" class="btn btn-primary">Thêm mới kì thi</a> 
           </div>
           
         </div>
@@ -29,18 +29,18 @@
           
             <div class="card card-primary"> 
             <div class="card-header">
-                <h3 class="card-title">Search Exam</h3>
+                <h3 class="card-title">Tìm kiếm</h3>
               </div>
               <form method="get" action=""> 
                 <div class="card-body"> 
                   <div class="row">
                 <div class="form-group col-md-3">
-                    <label>Name</label>
+                    <label>Tên kì thi</label>
                     <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name" placeholder="Name">
                   </div>
                   <div class="form-group col-md-3">
-                    <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Search</button> 
-                    <a href="{{ url('admin/examinations/exam/list')}}" class="btn btn-success" style="margin-top: 30px;">Reset</a>
+                    <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Tìm kiếm</button> 
+                    <a href="{{ url('admin/examinations/exam/list')}}" class="btn btn-success" style="margin-top: 30px;">Xóa</a>
                   </div>
                   </div>
                   
@@ -62,20 +62,20 @@
             @include('message')
             <!-- /.card -->
 
-            <div class="card">
+            <div class="card card-success">
               <div class="card-header">
-                <h3 class="card-title">Exam List</h3>
+                <h3 class="card-title">Danh sách kỳ thi</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>#</th>
-                      <th>Exam Name</th>
-                      <th>Note</th>
-                      <th>Created Date</th> 
-                      <th>Action</th> 
+                      <th>STT</th>
+                      <th>Tên kỳ thi</th>
+                      <th>Ghi chú</th>
+                      <th>Ngày tạo</th> 
+                      <th>Thao tác</th> 
                     </tr>
                   </thead>
                   <tbody>
@@ -86,8 +86,8 @@
                       <td>{{$value->note}}</td> 
                       <td>{{date('d-m-Y H:i A', strtotime($value->created_at)) }}</td> 
                       <td>
-                        <a href="{{ url('admin/examinations/exam/edit/'.$value->id)}}" class="btn btn-primary">Edit</a> 
-                        <a onclick="confirmation(event)" href="{{url('admin/examinations/exam/delete/'.$value->id)}}" class="btn btn-danger">Delete</a>
+                        <a href="{{ url('admin/examinations/exam/edit/'.$value->id)}}" class="btn btn-warning">Sửa</a> 
+                        <a onclick="confirmation(event)" href="{{url('admin/examinations/exam/delete/'.$value->id)}}" class="btn btn-danger">Xóa</a>
                       </td>
                     </tr>
                     @endforeach

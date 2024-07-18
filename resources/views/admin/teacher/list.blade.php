@@ -7,10 +7,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Student List (Total: {{ $getRecord->total()}})</h1>
+            <h1>Danh sách Giáo viên (Total: {{ $getRecord->total()}})</h1>
           </div> 
           <div class="col-sm-6" style="text-align: right;"> 
-          <a href="{{ url('admin/teacher/add')}}" class="btn btn-primary">Add New Teacher</a> 
+          <a href="{{ url('admin/teacher/add')}}" class="btn btn-primary">Thêm Giáo viên</a> 
           </div>
           
         </div>
@@ -29,25 +29,25 @@
           
             <div class="card card-primary"> 
             <div class="card-header">
-                <h3 class="card-title">Search Teacher</h3>
+                <h3 class="card-title">Tìm giáo viên</h3>
               </div>
               <form method="get" action=""> 
                 <div class="card-body"> 
                   <div class="row">
                 <div class="form-group col-md-2">
-                    <label>First Name</label>
+                    <label>Tên</label>
                     <input type="text" class="form-control" value="{{ Request::get('first_name') }}" name="first_name" placeholder="First Name">
                   </div> 
                   <div class="form-group col-md-2">
-                    <label>Last Name</label>
+                    <label>Họ</label>
                     <input type="text" class="form-control" value="{{ Request::get('last_name') }}" name="last_name" placeholder="Last Name">
                   </div>
                   <div class="form-group col-md-2">
-                    <label>Email address</label>
+                    <label>Email</label>
                     <input type="text" class="form-control" value="{{ Request::get('email') }}" name="email" placeholder="Email"> 
                   </div> 
                   <div class="form-group col-md-2">
-                    <label>Gender</label> 
+                    <label>Giới tính</label> 
                     <select class="form-control" name="gender">
                         <option value="">Select Gender</option> 
                         <option {{ (Request::get('gender') == 'Male') ? 'selected' : ''}} value="Male">Male</option> 
@@ -56,19 +56,19 @@
                     </select> 
                   </div> 
                   <div class="form-group col-md-2">
-                    <label>Mobile Number</label>
+                    <label>Số điện thoại</label>
                     <input type="text" class="form-control" value="{{ Request::get('mobile_number') }}" name="mobile_number" placeholder="Mobile Number"> 
                   </div> 
                   <div class="form-group col-md-2">
-                    <label>Marital Status</label>
+                    <label>Tình trạng hôn nhân</label>
                     <input type="text" class="form-control" value="{{ Request::get('marital_status') }}" name="marital_status" placeholder="Marital Status">
                   </div> 
                   <div class="form-group col-md-2">
-                    <label>Address</label>
+                    <label>Địa chỉ</label>
                     <input type="text" class="form-control" value="{{ Request::get('address') }}" name="address" placeholder="Last Name">
                   </div>
                   <div class="form-group col-md-2">
-                    <label>Status</label> 
+                    <label>Trạng thái</label> 
                     <select class="form-control" name="status"> 
                     <option value="">Select Status</option> 
                         <option {{ (Request::get('status') == '100') ? 'selected' : ''}} value="100">Active</option> 
@@ -76,12 +76,12 @@
                     </select>  
                   </div> 
                   <div class="form-group col-md-2">
-                    <label>Created Date</label>
+                    <label>Ngày tạo</label>
                     <input type="date" class="form-control" value="{{ Request::get('date') }}" name="date" placeholder="date"> 
                   </div> 
                   <div class="form-group col-md-2">
-                    <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Search</button> 
-                    <a href="{{ url('admin/teacher/list')}}" class="btn btn-success" style="margin-top: 30px;">Reset</a>
+                    <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Tìm kiếm</button> 
+                    <a href="{{ url('admin/teacher/list')}}" class="btn btn-success" style="margin-top: 30px;">Xóa</a>
                   </div>
                   </div>
                   
@@ -103,28 +103,28 @@
             @include('message')
             <!-- /.card -->
 
-            <div class="card">
+            <div class="card card-success">
               <div class="card-header">
-                <h3 class="card-title">Teacher List</h3>
+                <h3 class="card-title">Danh sách giáo viên</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0" style="overflow: auto;">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>#</th> 
-                      <th>Profile Pic</th>
-                      <th>Name</th>
+                      <th>STT</th> 
+                      <th>Ảnh đại diện</th>
+                      <th>Họ tên</th>
                       <th>Email</th> 
-                      <th>Gender</th> 
-                      <th>Date of Birth</th> 
-                      <th>Mobile Number</th> 
-                      <th>Marital Status</th> 
-                      <th>Address</th> 
-                      <th>Qualification</th>
-                      <th>Status</th> 
-                      <th>Created Date</th> 
-                      <th>Action</th> 
+                      <th>Giới tính</th> 
+                      <th>Ngày sinh</th> 
+                      <th>Số điện thoại</th> 
+                      <th>Tình trạng hôn nhân</th> 
+                      <th>Địa chỉ</th> 
+                      <th>Bằng cấp</th>
+                      <th>Trạng thái</th> 
+                      <th>Ngày tạo</th> 
+                      <th>Thao tác</th> 
                     </tr>
                   </thead>
                   <tbody>
@@ -147,8 +147,8 @@
                       <td>{{$value->status}}</td> 
                       <td>{{date('d-m-Y H:i A', strtotime($value->created_at)) }}</td> 
                       <td style="min-width: 150px;"> 
-                        <a href="{{ url('admin/teacher/edit/'.$value->user_id)}}" class="btn btn-primary btn-sm">Edit</a> 
-                        <a href="{{url('admin/teacher/delete/'.$value->user_id)}}" class="btn btn-danger btn-sm">Delete</a>
+                        <a href="{{ url('admin/teacher/edit/'.$value->user_id)}}" class="btn btn-warning btn-sm">Sửa</a> 
+                        <a href="{{url('admin/teacher/delete/'.$value->user_id)}}" class="btn btn-danger btn-sm">Xóa</a>
                       </td>
                     </tr>
                     @endforeach
