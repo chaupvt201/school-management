@@ -20,6 +20,10 @@ return new class extends Migration
             $table->integer('class_work')->default(0); 
            // $table->integer('test_work')->default(0); 
            // $table->integer('exam')->default(0); 
+           $table->foreign('student_id')->references('id')->on('student'); 
+           $table->foreign('exam_id')->references('id')->on('exam'); 
+           $table->foreign('class_id')->references('id')->on('class'); 
+           $table->foreign('subject_id')->references('id')->on('subject'); 
             $table->timestamps();
         });
     }

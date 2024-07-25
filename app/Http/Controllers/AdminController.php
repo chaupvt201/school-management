@@ -7,18 +7,20 @@ use App\Models\User;
 use App\Models\Admin; 
 use Illuminate\Support\Facades\DB; 
 use Hash; 
+use Auth; 
 
 class AdminController extends Controller
 {
     public function list() 
     { 
         $data['getRecord'] = User::getRecord(); 
-        $data['header_title'] = 'Admin List'; 
+        $data['getadmin'] = Auth::user()->id; 
+        $data['header_title'] = 'Danh sách Admin'; 
         return view('admin.admin.list', $data); 
     } 
     public function add() 
     {
-        $data['header_title'] = 'Add New Admin'; 
+        $data['header_title'] = 'Thêm mới Admin'; 
         return view('admin.admin.add', $data); 
     } 
     public function insert(Request $request) 
@@ -37,7 +39,7 @@ class AdminController extends Controller
         $admin->user_id = $id; 
         $admin->save(); 
 
-        return redirect('admin/admin/list')->with('success', 'Admin successfully created'); 
+        return redirect('admin/admin/list')->with('success', 'Thêm mới quản trị viên thành công'); 
     } 
     public function edit($id) 
     { 
@@ -70,7 +72,7 @@ class AdminController extends Controller
              ->where('user_id', $id)
              ->update(['admin_name'=> trim($request->name)]); 
         
-        return redirect('admin/admin/list')->with('success', 'Admin successfully updated'); 
+        return redirect('admin/admin/list')->with('success', 'Cập nhật quản trị viên thành công'); 
     } 
     public function delete($id) 
     { 
@@ -79,6 +81,6 @@ class AdminController extends Controller
         $user->delete(); 
 
 
-        return redirect('admin/admin/list')->with('success', 'Admin successfully deleted'); 
+        return redirect('admin/admin/list')->with('success', 'Xóa quản trị viên thành công'); 
     }
 }

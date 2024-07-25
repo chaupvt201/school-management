@@ -19,10 +19,10 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
-    </div>
+      <a href="" class="h1"><b>Trung tâm Mindx</b></a>
+    </div> 
     <div class="card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="h6">Đăng nhập để bắt đầu phiên làm việc</p>
 
       @include('message') 
       
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password" placeholder="Password">
+          <input type="password" class="form-control" name="password" placeholder="Mật khẩu">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -48,14 +48,14 @@
           <div class="col-8">
             <div class="icheck-primary">
               <input type="checkbox" id="remember" name="remember">
-              <label for="remember">
-                Remember Me
+              <label class="h6" for="remember">
+                Nhớ tôi
               </label>
             </div>
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block" style="padding: 8px;">Đăng nhập</button>
           </div>
           <!-- /.col -->
         </div>
@@ -65,14 +65,14 @@
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="{{ url('forgotpassword')}}">I forgot my password</a>
+        <a href="{{ url('forgotpassword')}}">Quên mật khẩu</a>
       </p>
       
     </div>
     <!-- /.card-body -->
   </div>
   <!-- /.card -->
-</div>
+</div> 
 <!-- /.login-box -->
 
 <!-- jQuery -->

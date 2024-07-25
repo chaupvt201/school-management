@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add New Subject</h1>
+            <h1>Thêm môn học</h1>
           </div>
           
         </div>
@@ -25,22 +25,22 @@
                 {{csrf_field()}} 
                 <div class="card-body"> 
                 <div class="form-group">
-                    <label>Class Name</label>
-                    <input type="text" class="form-control" name="name" required placeholder="Class Name">
+                    <label>Tên môn</label>
+                    <input type="text" class="form-control" name="name" required placeholder="Tên môn">
                   </div> 
                   <div class="form-group">
-                    <label>Subject Type</label>
+                    <label>Loại môn</label>
                     <select class="form-control" name="type" required> 
-                        <option value="">Select Type</option>
-                        <option value="Theory">Theory</option> 
-                        <option value="Practical">Practical</option>
+                        <option value="">Loại môn</option>
+                        <option value="Theory">Lý thuyết</option> 
+                        <option value="Practical">Thực hành</option>
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Status</label>
+                    <label>Trạng thái</label>
                     <select class="form-control" name="status">
-                        <option value="0">Active</option> 
-                        <option value="1">Inactive</option>
+                        <option value="0">Kích hoạt</option> 
+                        <option value="1">Không kích hoạt</option>
                     </select>
                   </div>
                   
@@ -50,7 +50,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Thêm mới</button>
                 </div>
               </form>
             </div>

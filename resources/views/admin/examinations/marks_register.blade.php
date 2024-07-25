@@ -86,7 +86,7 @@
                       <th>Student Name</th> 
                       @foreach($getSubject as $subject)
                       <th>{{ $subject->subject_name }} <br/> 
-                      ({{ $subject->subject_type}} : {{ $subject->passing_marks}} / {{$subject->full_marks}})
+                      ({{($subject->subject_type == 'Theory') ? 'Lý thuyết' : 'Thực hành'}} : {{ $subject->passing_marks}} / {{$subject->full_marks}})
                       </th>
                       @endforeach 
                       <th>Actions</th>
@@ -123,31 +123,31 @@
                         @endphp 
                         <td> 
                             <div style="margin-bottom: 10px;">
-                                Class work 
+                                Điểm thi
                                 <input type="hidden" name="mark[{{ $i }}][id]" value="{{ $subject->id }}">
                                 <input type="hidden" name="mark[{{ $i }}][subject_id]" value="{{ $subject->subject_id}}">
-                                <input type="text" name="mark[{{ $i }}][class_work]" id="class_work_{{ $student->id}}{{ $subject->subject_id}}" style="width: 200px;" placeholder="Enter Mark" value="{{ !empty($getMark->class_work) ? $getMark->class_work : ''}}" class="form-control"> 
+                                <input type="text" name="mark[{{ $i }}][class_work]" id="class_work_{{ $student->id}}{{ $subject->subject_id}}" style="width: 200px;" placeholder="Nhập điểm thi" value="{{ !empty($getMark->class_work) ? $getMark->class_work : ''}}" class="form-control"> 
                             </div> 
-                            <div style="margin-bottom: 10px;">
+                            <!-- <div style="margin-bottom: 10px;">
                                 Home work
                                 <input type="text" id="test_work_{{ $student->id}}{{ $subject->subject_id}}" name="mark[{{ $i }}][test_work]" style="width:200px;" placeholder="Enter Mark" value="{{ !empty($getMark->test_work) ? $getMark->test_work : ''}}" class="form-control"> 
                             </div> 
                             <div style="margin-bottom: 10px;">
                                 Exam 
                                 <input type="text" id="exam_{{ $student->id}}{{ $subject->subject_id}}" name="mark[{{ $i }}][exam]" style="width:200px;" placeholder="Enter Mark" value="{{ !empty($getMark->exam) ? $getMark->exam : ''}}" class="form-control"> 
-                            </div> 
+                            </div>  -->
                             <div style="margin-botton: 10px;">
-                            <button type="button" class="btn btn-primary SaveSingleSubject" id="{{ $student->id }}" data-val="{{ $subject->subject_id }}" data-exam="{{ Request::get('exam_id') }}" data-schedule="{{ $subject->id}}" data-class="{{ Request::get('class_id') }}">Save</button>
+                            <button type="button" class="btn btn-primary SaveSingleSubject" id="{{ $student->id }}" data-val="{{ $subject->subject_id }}" data-exam="{{ Request::get('exam_id') }}" data-schedule="{{ $subject->id}}" data-class="{{ Request::get('class_id') }}">Lưu lại</button>
                             </div> 
                             @if(!empty($getMark)) 
                             <div style="margin-bottom: 10px;"> 
-                            <b> Ghi chu </b> <br/>
+                            <b> Ghi chú </b> <br/>
                             <b>Tổng Điểm: </b> {{ round($totalMark, 2) }} <br/> 
                             <b>Điểm đạt: </b> {{ $subject->passing_marks }} <br/> 
                             @if($totalMark >= $subject->passing_marks) 
-                            Ket qua: <span style="color: green; font-weight: bold;">Dat</span>
+                            Kết quả: <span style="color: green; font-weight: bold;">Đạt</span>
                             @else 
-                            Ket qua: <span style="color: red; font-weight: bold;">Chua Dat</span> 
+                            Kết quả: <span style="color: red; font-weight: bold;">Chưa Đạt</span> 
                             @php 
                             $pass_fail_vali = 1; 
                             @endphp 
@@ -160,7 +160,7 @@
                         @endphp 
                         @endforeach 
                         <td style="min-width: 250px;">
-                            <button type="submit" class="btn btn-success">Lưu lại</button> 
+                            <button type="submit" class="btn btn-success">Lưu toàn bộ</button> 
                             @if(!empty($totalStudentMark))
                             <br/> 
                             <b>Điểm tổng kết </b> {{$totalStudentMark}} 
@@ -176,9 +176,9 @@
                             <b>Phần trăm: </b> {{ round($percentage, 2) }}% 
                             <br/> 
                             @if($pass_fail_vali == 0) 
-                            Ket qua: <span style="color: green; font-weight: bold;">Dat</span>
+                            Kết quả: <span style="color: green; font-weight: bold;">Đạt</span>
                             @else 
-                            Ket qua: <span style="color: red; font-weight: bold;">Chua Dat</span> 
+                            Kết quả: <span style="color: red; font-weight: bold;">Chưa Đạt</span> 
                             @endif 
                             @endif 
                         </td>

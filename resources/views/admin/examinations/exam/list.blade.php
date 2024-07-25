@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Danh sách kì thi (Total: {{ $getRecord->total()}})</h1>
+            <h1>Danh sách kì thi (Tổng: {{ $getRecord->total()}})</h1>
           </div> 
           <div class="col-sm-6" style="text-align: right;"> 
           <a href="{{ url('admin/examinations/exam/add')}}" class="btn btn-primary">Thêm mới kì thi</a> 
@@ -36,7 +36,7 @@
                   <div class="row">
                 <div class="form-group col-md-3">
                     <label>Tên kì thi</label>
-                    <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name" placeholder="Name">
+                    <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name" placeholder="Tên kỳ thi">
                   </div>
                   <div class="form-group col-md-3">
                     <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Tìm kiếm</button> 
@@ -59,7 +59,6 @@
           
           <!--/.col (right) -->
         </div>
-            @include('message')
             <!-- /.card -->
 
             <div class="card card-success">
@@ -78,10 +77,14 @@
                       <th>Thao tác</th> 
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody> 
+                    @php 
+                    $pageNumber = request()->query('page', 1); 
+                    $indexOffset = ($pageNumber - 1)* $getRecord->perPage();
+                    @endphp
                     @foreach($getRecord as $value) 
                     <tr>
-                      <td>{{$value->id}}</td> 
+                      <td>{{ $loop->iteration + $indexOffset}}</td> 
                       <td>{{$value->name}}</td> 
                       <td>{{$value->note}}</td> 
                       <td>{{date('d-m-Y H:i A', strtotime($value->created_at)) }}</td> 

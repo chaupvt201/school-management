@@ -36,7 +36,7 @@
                   <div class="row">
                 <div class="form-group col-md-3">
                     <label>Tên</label>
-                    <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name" placeholder="Name">
+                    <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name" placeholder="Họ tên">
                   </div>
                   <div class="form-group col-md-3">
                     <label>Email address</label>
@@ -67,7 +67,6 @@
           
           <!--/.col (right) -->
         </div>
-            @include('message')
             <!-- /.card -->
 
             <div class="card card-success">
@@ -86,18 +85,22 @@
                       <th>Thao tác</th> 
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody> 
+                    @php 
+                    $pageNumber = request()->query('page', 1); 
+                    $indexOffset = ($pageNumber - 1)* $getRecord->perPage();
+                    @endphp
                     @foreach($getRecord as $value) 
                     <tr>
-                      <td>{{$value->id}}</td> 
+                      <td>{{ $loop->iteration + $indexOffset }}</td> 
                       <td>{{$value->name}}</td> 
                       <td>{{$value->email}}</td> 
                       <td>{{date('d-m-Y H:i A', strtotime($value->created_at)) }}</td> 
                       <td>
                         <a href="{{ url('admin/admin/edit/'.$value->id)}}" class="btn btn-warning">Sửa</a> 
-                        <a href="{{url('admin/admin/delete/'.$value->id)}}" class="btn btn-danger">Xóa</a>
+                        <a href="{{url('admin/admin/delete/'.$value->id)}}" class="btn btn-danger" style="{{ ($getadmin == $value->id) ? 'display: none;' : ''}}">Xóa</a>
                       </td>
-                    </tr>
+                    </tr> 
                     @endforeach
                   </tbody>
                 </table> 

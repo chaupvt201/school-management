@@ -19,7 +19,7 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Forgot Password</b></a>
+      <a href="../../index2.html" class="h1"><b>Quên mật khẩu</b></a>
     </div>
     <div class="card-body">
       
@@ -40,7 +40,7 @@
         <div class="row">
 
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Forgot</button>
+            <button type="submit" class="btn btn-primary btn-block">Quên</button>
           </div>
 
         </div>
@@ -51,7 +51,7 @@
 
       <p class="mb-1"> 
         <br/>
-        <a href="{{ url('')}}">Login</a>
+        <a href="{{ url('')}}">Đăng nhập</a>
       </p>
       
     </div>

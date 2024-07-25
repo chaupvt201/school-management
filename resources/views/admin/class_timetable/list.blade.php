@@ -27,7 +27,7 @@
 
 
           
-            <div class="card card-primary"> 
+            <!-- <div class="card card-primary"> 
             <div class="card-header">
                 <h3 class="card-title">Tìm kiếm</h3>
               </div>
@@ -36,11 +36,11 @@
                   <div class="row">
                 <div class="form-group col-md-3">
                     <label>Tên lớp</label>
-                    <input type="text" class="form-control" value="{{ Request::get('class_name') }}" name="class_name" placeholder="Class Name">
+                    <input type="text" class="form-control" value="{{ Request::get('class_name') }}" name="class_name" placeholder="Tên lớp">
                   </div> 
                   <div class="form-group col-md-3">
                     <label>Tên môn</label>
-                    <input type="text" class="form-control" value="{{ Request::get('subject_name') }}" name="subject_name" placeholder="Subject Name">
+                    <input type="text" class="form-control" value="{{ Request::get('subject_name') }}" name="subject_name" placeholder="Môn học">
                   </div>
 
                   <div class="form-group col-md-3">
@@ -52,11 +52,11 @@
                   
 
                 </div>
-                <!-- /.card-body -->
-
                 
+
+
               </form>
-            </div>
+            </div> -->
             
           </div>
           <!--/.col (left) -->
@@ -64,7 +64,6 @@
           
           <!--/.col (right) -->
         </div>
-            @include('message')
             <!-- /.card -->
 
             <div class="card card-primary">
@@ -76,7 +75,7 @@
                 <table class="table table-striped table-bordered table-centered mb-0">
                   <tbody>
                     <tr>
-                      <td style="font-weight: bold; width: 100px;">Thu Hai</td>
+                      <td style="font-weight: bold; width: 100px;">Thứ hai</td>
                       <td class="m-1"> 
                         @foreach($getRecord as $value) 
                         @if($value->day == "Monday")
@@ -97,8 +96,8 @@
                             <span class="caret"></span> 
                           </button>  
                           <div class="dropdown-menu"> 
-                            <a class="dropdown-item" href="{{ url('admin/class_timetable/edit', $value->id) }}" >Edit</a> 
-                            <a class="dropdown-item" href="{{ url('admin/class_timetable/delete', $value->id) }}">Delete</a>
+                            <a class="dropdown-item" href="{{ url('admin/class_timetable/edit', $value->id) }}" >Sửa</a> 
+                            <a class="dropdown-item" href="{{ url('admin/class_timetable/delete', $value->id) }}">Xóa</a>
                         </div> 
                         </div> 
                         @endif 
@@ -106,7 +105,7 @@
                         </td>
                     </tr> 
                     <tr>
-                      <td style="font-weight: bold; width: 100px;">Thu Ba</td>
+                      <td style="font-weight: bold; width: 100px;">Thứ ba</td>
                       <td class="m-1"> 
                         @foreach($getRecord as $value) 
                         @if($value->day == "Tuesday")
@@ -127,8 +126,8 @@
                             <span class="caret"></span> 
                           </button>  
                           <div class="dropdown-menu"> 
-                            <a class="dropdown-item" href="{{ url('admin/class_timetable/edit', $value->id) }}" >Edit</a> 
-                            <a class="dropdown-item" href="{{ url('admin/class_timetable/delete', $value->id) }}">Delete</a>
+                            <a class="dropdown-item" href="{{ url('admin/class_timetable/edit', $value->id) }}" >Sửa</a> 
+                            <a class="dropdown-item" href="{{ url('admin/class_timetable/delete', $value->id) }}">Xóa</a>
                         </div> 
                         </div> 
                         @endif 
@@ -136,12 +135,12 @@
                         </td>
                     </tr> 
                     <tr>
-                      <td style="font-weight: bold; width: 100px;">Thu Tu</td>
+                      <td style="font-weight: bold; width: 100px;">Thứ tư</td>
                       <td class="m-1"> 
                         @foreach($getRecord as $value) 
                         @if($value->day == "Wednesday")
                         <div class="btn-group text-start">
-                          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> 
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> 
                             <p style="margin-bottom: 0px;"><i class="bi bi-book"></i>
                             {{ $value->subject_name}}
                             </p> 
@@ -157,8 +156,8 @@
                             <span class="caret"></span> 
                           </button>  
                           <div class="dropdown-menu"> 
-                            <a class="dropdown-item" href="{{ url('admin/class_timetable/edit', $value->id) }}" >Edit</a> 
-                            <a class="dropdown-item" href="{{ url('admin/class_timetable/delete', $value->id) }}">Delete</a>
+                            <a class="dropdown-item" href="{{ url('admin/class_timetable/edit', $value->id) }}" >Sửa</a> 
+                            <a class="dropdown-item" href="{{ url('admin/class_timetable/delete', $value->id) }}">Xóa</a>
                         </div> 
                         </div> 
                         @endif 
@@ -166,12 +165,12 @@
                         </td>
                     </tr> 
                     <tr>
-                      <td style="font-weight: bold; width: 100px;">Thu Nam</td>
+                      <td style="font-weight: bold; width: 100px;">Thứ năm</td>
                       <td class="m-1"> 
                         @foreach($getRecord as $value) 
                         @if($value->day == "Thursday")
                         <div class="btn-group text-start">
-                          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> 
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> 
                             <p style="margin-bottom: 0px;"><i class="bi bi-book"></i>
                             {{ $value->subject_name}}
                             </p> 
@@ -187,8 +186,8 @@
                             <span class="caret"></span> 
                           </button>  
                           <div class="dropdown-menu"> 
-                            <a class="dropdown-item" href="{{ url('admin/class_timetable/edit', $value->id) }}" >Edit</a> 
-                            <a class="dropdown-item" href="{{ url('admin/class_timetable/delete', $value->id) }}">Delete</a>
+                            <a class="dropdown-item" href="{{ url('admin/class_timetable/edit', $value->id) }}" >Sửa</a> 
+                            <a class="dropdown-item" href="{{ url('admin/class_timetable/delete', $value->id) }}">Xóa</a>
                         </div> 
                         </div> 
                         @endif 
@@ -196,12 +195,12 @@
                         </td>
                     </tr> 
                     <tr>
-                      <td style="font-weight: bold; width: 100px;">Thu Sau</td>
+                      <td style="font-weight: bold; width: 100px;">Thứ sáu</td>
                       <td class="m-1"> 
                         @foreach($getRecord as $value) 
                         @if($value->day == "Friday")
                         <div class="btn-group text-start">
-                          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> 
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> 
                             <p style="margin-bottom: 0px;"><i class="bi bi-book"></i>
                             {{ $value->subject_name}}
                             </p> 
@@ -217,8 +216,8 @@
                             <span class="caret"></span> 
                           </button>  
                           <div class="dropdown-menu"> 
-                            <a class="dropdown-item" href="{{ url('admin/class_timetable/edit', $value->id) }}" >Edit</a> 
-                            <a class="dropdown-item" href="{{ url('admin/class_timetable/delete', $value->id) }}">Delete</a>
+                            <a class="dropdown-item" href="{{ url('admin/class_timetable/edit', $value->id) }}" >Sửa</a> 
+                            <a class="dropdown-item" href="{{ url('admin/class_timetable/delete', $value->id) }}">Xóa</a>
                         </div> 
                         </div> 
                         @endif 
@@ -226,12 +225,12 @@
                         </td>
                     </tr> 
                     <tr>
-                      <td style="font-weight: bold; width: 100px;">Thu Bay</td>
+                      <td style="font-weight: bold; width: 100px;">Thứ bảy</td>
                       <td class="m-1"> 
                         @foreach($getRecord as $value) 
                         @if($value->day == "Saturday")
                         <div class="btn-group text-start">
-                          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> 
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> 
                             <p style="margin-bottom: 0px;"><i class="bi bi-book"></i>
                             {{ $value->subject_name}}
                             </p> 
@@ -247,8 +246,8 @@
                             <span class="caret"></span> 
                           </button>  
                           <div class="dropdown-menu"> 
-                            <a class="dropdown-item" href="{{ url('admin/class_timetable/edit', $value->id) }}" >Edit</a> 
-                            <a class="dropdown-item" href="{{ url('admin/class_timetable/delete', $value->id) }}">Delete</a>
+                            <a class="dropdown-item" href="{{ url('admin/class_timetable/edit', $value->id) }}" >Sửa</a> 
+                            <a class="dropdown-item" href="{{ url('admin/class_timetable/delete', $value->id) }}">Xóa</a>
                         </div> 
                         </div> 
                         @endif 
@@ -256,12 +255,12 @@
                         </td>
                     </tr> 
                     <tr>
-                      <td style="font-weight: bold; width: 100px;">Chu nhat</td>
+                      <td style="font-weight: bold; width: 100px;">Chủ nhật</td>
                       <td class="m-1"> 
                         @foreach($getRecord as $value) 
                         @if($value->day == "Sunday")
                         <div class="btn-group text-start">
-                          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> 
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> 
                             <p style="margin-bottom: 0px;"><i class="bi bi-book"></i>
                             {{ $value->subject_name}}
                             </p> 
@@ -277,8 +276,8 @@
                             <span class="caret"></span> 
                           </button>  
                           <div class="dropdown-menu"> 
-                            <a class="dropdown-item" href="{{ url('admin/class_timetable/edit', $value->id) }}" >Edit</a> 
-                            <a class="dropdown-item" href="{{ url('admin/class_timetable/delete', $value->id) }}">Delete</a>
+                            <a class="dropdown-item" href="{{ url('admin/class_timetable/edit', $value->id) }}" >Sửa</a> 
+                            <a class="dropdown-item" href="{{ url('admin/class_timetable/delete', $value->id) }}">Xóa</a>
                         </div> 
                         </div> 
                         @endif 

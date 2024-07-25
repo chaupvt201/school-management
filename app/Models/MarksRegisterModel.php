@@ -15,5 +15,27 @@ class MarksRegisterModel extends Model
                 ->where('class_id', '=', $class_id)
                 ->where('subject_id', '=', $subject_id)
                 ->first(); 
+    } 
+    static public function getExam($student_id)
+    {
+        return self::select('marks_register.*', 'exam.name as exam_name')
+                ->join('exam','exam.id','=', 'marks_register.exam_id')
+                ->where('marks_register.student_id','=', $student_id) 
+                ->groupBy('marks_register.exam_id') 
+                ->get(); 
+    }
+    static public function getExamSubject($exam_id, $student_id)
+    {
+        return self::select('marks_register.*', 'exam.name as exam_name', 'subject.name as subject_name', 'exam_schedule.full_marks as full_marks', 'exam_schedule.passing_marks as passing_marks')
+                ->join('exam','exam.id', '=', 'marks_register.exam_id') 
+                ->join('subject', 'subject.id', '=', 'marks_register.subject_id')
+                ->join('exam_schedule', function ($join) {
+                    $join->on('marks_register.exam_id', '=', 'exam_schedule.exam_id')
+                         ->on('marks_register.class_id', '=', 'exam_schedule.class_id')
+                         ->on('marks_register.subject_id', '=', 'exam_schedule.subject_id'); 
+                })
+                ->where('marks_register.exam_id', '=', $exam_id) 
+                ->where('marks_register.student_id', '=', $student_id) 
+                ->get(); 
     }
 }

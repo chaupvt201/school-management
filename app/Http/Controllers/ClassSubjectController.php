@@ -13,14 +13,14 @@ class ClassSubjectController extends Controller
     public function list(Request $request) 
     {
         $data['getRecord'] = ClassSubjectModel::getRecord(); 
-        $data['header_title'] = 'Subject Assign List'; 
+        $data['header_title'] = 'Danh sách đăng ký'; 
         return view('admin.assign_subject.list', $data); 
     } 
     public function add(Request $request) 
     { 
         $data['getClass'] = ClassModel::getClass(); 
         $data['getSubject'] = SubjectModel::getSubject(); 
-        $data['header_title'] = 'Subject Assign Add'; 
+        $data['header_title'] = 'Đăng ký môn'; 
         return view('admin.assign_subject.add', $data); 
     } 
     public function insert(Request $request) 
@@ -46,11 +46,11 @@ class ClassSubjectController extends Controller
                 }
                 
             } 
-            return redirect('admin/assign_subject/list')->with('success', 'Subject Assign to Class Successfully'); 
+            return redirect('admin/assign_subject/list')->with('success', 'Đăng ký môn học thành công'); 
         } 
         else 
         {
-            return redirect()->back()->with('error', 'Due to some error pls try again'); 
+            return redirect()->back()->with('error', 'Có lỗi vui lòng thử lại'); 
         }
     } 
 
@@ -63,7 +63,7 @@ class ClassSubjectController extends Controller
             $data['getAssignSubjectID'] = ClassSubjectModel::getAssignSubjectID($getRecord->class_id); 
             $data['getClass'] = ClassModel::getClass(); 
             $data['getSubject'] = SubjectModel::getSubject(); 
-            $data['header_title'] = "Eidt Assign Subject"; 
+            $data['header_title'] = "Cập nhật đăng ký"; 
             return view('admin.assign_subject.edit', $data); 
         } 
         else
@@ -98,13 +98,13 @@ class ClassSubjectController extends Controller
             } 
             
         } 
-        return redirect('admin/assign_subject/list')->with('success', 'Subject Assign to Class Successfully'); 
+        return redirect('admin/assign_subject/list')->with('success', 'Cập nhật đăng ký môn thành công'); 
     }
     public function delete($id) 
     {
         $classsubject = ClassSubjectModel::getSingle($id); 
         $classsubject->delete(); 
-        return redirect()->back()->with('success', 'Subject deleted sucessfuly'); 
+        return redirect()->back()->with('success', 'Xóa đăng ký môn thành công'); 
     } 
     public function edit_single($id) 
     {
@@ -129,7 +129,7 @@ class ClassSubjectController extends Controller
         {
             $getAlreadyFirst->status = $request->status; 
             $getAlreadyFirst->save(); 
-            return redirect('admin/assign_subject/list')->with('success', 'Status Updated Successfully'); 
+            return redirect('admin/assign_subject/list')->with('success', 'Cập nhật trạng thái thành công'); 
         } 
         else 
         {
@@ -138,7 +138,7 @@ class ClassSubjectController extends Controller
             $classsubject->subject_id = $request->subject_id; 
             $classsubject->status = $request->status; 
             $classsubject->save(); 
-            return redirect('admin/assign_subject/list')->with('success', 'Subject Assign to Class Successfully'); 
+            return redirect('admin/assign_subject/list')->with('success', 'Đăng ký môn học thành công'); 
         }
     }
 }

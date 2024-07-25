@@ -13,12 +13,12 @@ class SubjectController extends Controller
     public function list() 
     {
         $data['getRecord'] = SubjectModel::getRecord(); 
-        $data['header_title'] = 'Subject List'; 
+        $data['header_title'] = 'Danh sách môn học'; 
         return view('admin.subject.list', $data); 
     } 
     public function add() 
     {
-        $data['header_title'] = 'Subject Add'; 
+        $data['header_title'] = 'Thêm môn học'; 
         return view('admin.subject.add', $data); 
     } 
     public function insert(Request $request) 
@@ -29,7 +29,7 @@ class SubjectController extends Controller
         $subject->status = trim($request->status); 
        // $subject->created_by = Auth::user()->id; 
         $subject->save(); 
-        return redirect('admin/subject/list')->with('success', 'Subject Addes Succesfully'); 
+        return redirect('admin/subject/list')->with('success', 'Thêm mới môn học thành công'); 
 
     } 
     public function edit($id) 
@@ -37,7 +37,7 @@ class SubjectController extends Controller
         $data['getRecord'] = SubjectModel::getSingle($id); 
         if(!empty($data['getRecord'])) 
         { 
-            $data['header_title'] = 'Edit Subject';
+            $data['header_title'] = 'Cập nhật môn học';
             return view('admin.subject.edit', $data); 
         } 
         else 
@@ -52,14 +52,14 @@ class SubjectController extends Controller
         $subject->type = $request->type; 
         $subject->status = $request->status; 
         $subject->save(); 
-        return redirect('admin/subject/list')->with('success', 'Subject Updated Successfully'); 
+        return redirect('admin/subject/list')->with('success', 'Cập nhật môn học thành công'); 
 
     } 
     public function delete($id) 
     {
         $subject = SubjectModel::getSingle($id); 
         $subject->delete(); 
-        return redirect()->back()->with('success', 'Subject Deleted Successfully'); 
+        return redirect()->back()->with('success', 'Xóa môn học thành công'); 
     } 
     public function MySubject()
     { 

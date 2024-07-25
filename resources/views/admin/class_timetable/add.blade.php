@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add New Class</h1>
+            <h1>Thêm lịch học mới</h1>
           </div>
           
         </div>
@@ -25,18 +25,18 @@
                 {{csrf_field()}} 
                 <div class="card-body"> 
                 <div class="form-group">
-                    <label>Class Name</label>
+                    <label>Lớp</label>
                     <select class='form-control getClass' name="class_id" required>
-                        <option value="">Select Class</option> 
+                        <option value="">Chọn lớp</option> 
                             @foreach($getClass as $class) 
                             <option {{ (Request::get('class_id') == $class->id) ? 'selected' : ''}} value="{{ $class->id}}">{{ $class->name}}</option>
                             @endforeach 
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Subject</label>
+                    <label>Môn học</label>
                     <select class='form-control getSubject' name="subject_id" required>
-                        <option value="">Select Subject<option> 
+                        <option value="">Chọn môn<option> 
                             @if(!empty($getSubject)) 
                             @foreach($getSubject as $subject) 
                             <option {{ (Request::get('subject_id') == $subject->subject_id) ? 'selected' : ''}}
@@ -46,38 +46,38 @@
                     </select>
                   </div> 
                   <div class="form-group">
-                    <label>Teacher</label> 
+                    <label>Giáo viên</label> 
                     <select class="form-control" name="teacher_id" required>
-                        <option value="">Select Teacher</option> 
+                        <option value="">Chọn giáo viên</option> 
                         @foreach($getTeacher as $teacher) 
                         <option value="{{ $teacher->id }}">{{ $teacher->last_name}} {{$teacher->first_name}}</option>
                         @endforeach 
                     </select>
                   </div> 
                   <div class="form-group">
-                    <label>Day</label> 
+                    <label>Chọn ngày</label> 
                     <select class="form-control" name="day" required>
-                        <option value="">Select Day</option> 
-                        <option value="Monday">Monday</option> 
-                        <option value="Tuesday">Tuesday</option> 
-                        <option value="Wednesday">Wednesday</option> 
-                        <option value="Thursday">Thursday</option> 
-                        <option value="Friday">Friday</option> 
-                        <option value="Saturday">Saturday</option> 
-                        <option value="Sunday">Sunday</option>
+                        <option value="">Chọn ngày</option> 
+                        <option value="Monday">Thứ hai</option> 
+                        <option value="Tuesday">Thứ ba</option> 
+                        <option value="Wednesday">Thứ tư</option> 
+                        <option value="Thursday">Thứ năm</option> 
+                        <option value="Friday">Thứ sáu</option> 
+                        <option value="Saturday">Thứ bảy</option> 
+                        <option value="Sunday">Chủ nhật</option>
                     </select>
                   </div> 
                   <div class="form-group"> 
-                    <label>Start Time</label> 
+                    <label>Thời gian bắt đầu</label> 
                     <input type="time" class="form-control" name="start_time" required>
                   </div> 
                   <div class="form-group">
-                    <label>End Time</label> 
+                    <label>Thời gian kết thúc</label> 
                     <input type="time" class="form-control" name="end_time" required> 
                   </div> 
                   <div class="form-group">
-                    <label>Room Number</label> 
-                    <input type="text" class="form-control" name="room_number" placeholder="room number" required> 
+                    <label>Phòng học</label> 
+                    <input type="text" class="form-control" name="room_number" placeholder="Phòng học" required> 
                   </div>
                   
                   
@@ -86,7 +86,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Thêm mới</button>
                 </div>
               </form>
             </div>

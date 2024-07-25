@@ -285,7 +285,7 @@
             <a href="{{ url('teacher/dashboard')}}" class="nav-link @if(Request::segment(2) == 'dashboard') active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard 
+                Trang chủ
                 
               </p>
             </a>
@@ -294,7 +294,7 @@
             <a href="{{ url('teacher/my_student')}}" class="nav-link @if(Request::segment(2) == 'my_student') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                My Student 
+                Danh sách học viên
                 
               </p>
             </a>
@@ -303,7 +303,7 @@
             <a href="{{ url('teacher/my_class_subject')}}" class="nav-link @if(Request::segment(2) == 'my_class_subject') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                My Class and Subject 
+                Phân công giảng dạy
                 
               </p>
             </a>
@@ -312,7 +312,7 @@
             <a href="{{ url('teacher/class_timetable')}}" class="nav-link @if(Request::segment(2) == 'class_timetable') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                Class Timetable
+                Thời khóa biểu
                 
               </p>
             </a>
@@ -321,7 +321,7 @@
             <a href="{{ url('teacher/my_exam_timetable')}}" class="nav-link @if(Request::segment(2) == 'my_exam_timetable') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                My Exam Timetable
+                Lịch kiểm tra
               </p>
             </a>
           </li> 
@@ -329,7 +329,7 @@
             <a href="{{ url('teacher/account')}}" class="nav-link @if(Request::segment(2) == 'account') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                My Account 
+                Quản lý tài khoản
               </p>
             </a>
           </li> 
@@ -337,7 +337,7 @@
             <a href="{{ url('teacher/change_password')}}" class="nav-link @if(Request::segment(2) == 'change_password') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                Change Password 
+                Đổi mật khẩu
               </p>
             </a>
           </li> 
@@ -345,25 +345,25 @@
             <a href="{{ url('teacher/my_calendar')}}" class="nav-link @if(Request::segment(2) == 'my_calendar') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                My Calendar 
+                Lịch tổng hợp
               </p>
             </a>
           </li> 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="{{ url('teacher/marks_register')}}" class="nav-link @if(Request::segment(2) == 'marks_register') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                Mark Register 
+                Nhập điểm
               </p>
             </a>
-          </li> 
+          </li>  -->
 
           @elseif(Auth::user()->user_type ==3) 
           <li class="nav-item">
             <a href="{{ url('student/dashboard')}}" class="nav-link @if(Request::segment(2) == 'dashboard') active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard 
+                Trang chủ
                 
               </p>
             </a>
@@ -372,7 +372,7 @@
             <a href="{{ url('student/my_calender')}}" class="nav-link @if(Request::segment(2) == 'my_calender') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                My Calender
+                Lịch tổng hợp
               </p>
             </a>
           </li> 
@@ -380,7 +380,7 @@
             <a href="{{ url('student/my_subject')}}" class="nav-link @if(Request::segment(2) == 'my_subject') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                My Subject 
+                Môn học của tôi
               </p>
             </a>
           </li> 
@@ -388,7 +388,7 @@
             <a href="{{ url('student/my_timetable')}}" class="nav-link @if(Request::segment(2) == 'my_timetable') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                My Timetable
+                Thời khóa biểu
               </p>
             </a>
           </li> 
@@ -396,7 +396,15 @@
             <a href="{{ url('student/my_exam_timetable')}}" class="nav-link @if(Request::segment(2) == 'my_exam_timetable') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                My Exam Timetable
+                Lịch kiểm tra
+              </p>
+            </a>
+          </li> 
+          <li class="nav-item">
+            <a href="{{ url('student/my_exam_result')}}" class="nav-link @if(Request::segment(2) == 'my_exam_result') active @endif">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+                Xem điểm thi
               </p>
             </a>
           </li> 
@@ -404,7 +412,7 @@
             <a href="{{ url('student/account')}}" class="nav-link @if(Request::segment(2) == 'account') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                My Account 
+                Quản lý tài khoản
               </p>
             </a>
           </li> 
@@ -412,7 +420,7 @@
             <a href="{{ url('student/change_password')}}" class="nav-link @if(Request::segment(2) == 'change_password') active @endif">
               <i class="nav-icon far fa-user"></i>
               <p>
-                Change Password 
+                Đổi mật khẩu
               </p>
             </a>
           </li> 
@@ -446,7 +454,7 @@
             <a href="{{ url('logout')}}" class="nav-link">
               <i class="nav-icon far fa-user"></i>
               <p>
-                Logout 
+                Đăng xuất
               </p>
             </a>
           </li>

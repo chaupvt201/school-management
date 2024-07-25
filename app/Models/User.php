@@ -71,7 +71,7 @@ class User extends Authenticatable
          return $return; 
     } 
 
-    static public function getStudent() 
+    static public function getStudent($remove_pagination = 0) 
     {
         $return = self::select('users.*', 'student.*', 'class.name as class_name') 
                        ->join('student', 'student.user_id', '=', 'users.id') 
@@ -112,11 +112,20 @@ class User extends Authenticatable
                         $return = $return->where('student.status', '=', $status); 
                        }
 
-        $return = $return->orderBy('users.id', 'desc') 
-                         ->paginate(2); 
+        $return = $return->orderBy('users.id', 'desc'); 
+
+        if(!empty($remove_pagination)) 
+        {
+            $return = $return->get();
+        } 
+        else 
+        {
+            $return = $return->paginate(2); 
+        }
+                        
          return $return; 
     } 
-    static public function getTeacher() 
+    static public function getTeacher($remove_pagination = 0) 
     {
         $return = self::select('users.*','teacher.*') 
                         ->join('teacher', 'teacher.user_id', '=', 'users.id') 
@@ -160,8 +169,16 @@ class User extends Authenticatable
                         $return = $return->where('teacher.status', '=', $status); 
                        }
         
-        $return = $return->orderBy('users.id','desc') 
-                         ->paginate(2); 
+        $return = $return->orderBy('users.id','desc'); 
+
+        if(!empty($remove_pagination)) 
+        {
+            $return = $return->get(); 
+        } 
+        else 
+        {
+            $return = $return->paginate(2); 
+        }
         return $return; 
     }
     static public function getEmailSingle($email)

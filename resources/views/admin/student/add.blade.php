@@ -25,20 +25,20 @@
                 {{csrf_field()}} 
                 <div class="card-body"> 
                     <div class="row">
+                  <div class="form-group col-md-6">
+                    <label>Họ <span style="color: red;">*</span></label>
+                    <input type="text" class="form-control" value="{{ old('last_name') }}" name="last_name" required placeholder="Họ"> 
+                    <div style="color:red">{{ $errors->first('last_name') }}</div>
+                  </div> 
                 <div class="form-group col-md-6">
-                    <label>First Name <span style="color: red;">*</span></label>
-                    <input type="text" class="form-control" value="{{ old('first_name') }}" name="first_name" required placeholder="First Name"> 
+                    <label>Tên <span style="color: red;">*</span></label>
+                    <input type="text" class="form-control" value="{{ old('first_name') }}" name="first_name" required placeholder="Tên"> 
                     <div style="color:red">{{ $errors->first('first_name') }}</div>
                   </div> 
                   <div class="form-group col-md-6">
-                    <label>Last Name <span style="color: red;">*</span></label>
-                    <input type="text" class="form-control" value="{{ old('last_name') }}" name="last_name" required placeholder="Last Name"> 
-                    <div style="color:red">{{ $errors->first('last_name') }}</div>
-                  </div> 
-                  <div class="form-group col-md-6">
-                    <label>Class <span style="color: red;">*</span></label> 
+                    <label>Lớp <span style="color: red;">*</span></label> 
                     <select class="form-control" required name="class_id">
-                        <option value="">Select Class</option> 
+                        <option value="">Chọn lớp</option> 
                         @foreach($getClass as $value) 
                         <option {{ (old('class_id') == $value->id) ? 'selected' : ''}} value="{{ $value->id }}">{{ $value->name }}</option>
                         @endforeach 
@@ -46,36 +46,36 @@
                     <div style="color:red">{{ $errors->first('class_id') }}</div>
                   </div> 
                   <div class="form-group col-md-6">
-                    <label>Gender <span style="color: red;">*</span></label> 
+                    <label>Giới tính <span style="color: red;">*</span></label> 
                     <select class="form-control" required name="gender">
-                        <option value="">Select Gender</option> 
-                        <option {{ (old('gender') == 'Male') ? 'selected' : ''}} value="Male">Male</option> 
-                        <option {{ (old('gender') == 'Female') ? 'selected' : ''}} value="Female">Female</option> 
-                        <option {{ (old('gender') == 'Other') ? 'selected' : ''}} value="Other">Other</option>
+                        <option value="">Chọn giới tính</option> 
+                        <option {{ (old('gender') == 'Nam') ? 'selected' : ''}} value="Nam">Nam</option> 
+                        <option {{ (old('gender') == 'Nữ') ? 'selected' : ''}} value="Nữ">Nữ</option> 
+                        <option {{ (old('gender') == 'Khác') ? 'selected' : ''}} value="Khác">Khác</option>
                     </select> 
                     <div style="color:red">{{ $errors->first('gender') }}</div>
                   </div> 
                   <div class="form-group col-md-6">
-                    <label>Date of Birth </label> 
+                    <label>Ngày sinh </label> 
                     <input type="date" class="form-control" value="{{ old('date_of_birth')}}" name="date_of_birth" required > 
                     <div style="color:red">{{ $errors->first('date_of_birth') }}</div>
                   </div>
                   <div class="form-group col-md-6">
-                    <label>Mobile Number <span style="color: red;">*</span></label>
-                    <input type="text" class="form-control" value="{{ old('mobile_number') }}" name="mobile_number" required placeholder="Mobile Number"> 
+                    <label>Số điện thoại <span style="color: red;">*</span></label>
+                    <input type="text" class="form-control" value="{{ old('mobile_number') }}" name="mobile_number" required placeholder="Số điện thoại"> 
                     <div style="color:red">{{ $errors->first('mobile_number') }}</div>
                   </div>  
                   <div class="form-group col-md-6">
-                    <label>Profile Pic</label>
+                    <label>Ảnh đại diện </label>
                     <input type="file" class="form-control" name="profile_pic"> 
                     <div style="color:red">{{ $errors->first('profile_pic') }}</div>
                   </div>  
                   <div class="form-group col-md-6">
-                    <label>Status <span style="color: red;">*</span></label> 
+                    <label>Trạng thái <span style="color: red;">*</span></label> 
                     <select class="form-control" required name="status">
-                        <option value="">Select Status</option> 
-                        <option {{ old('status') == 0 ? 'selected' : ''}} value="0">Active</option> 
-                        <option {{ old('status') == 1 ? 'selected' : ''}} value="1">Inactive</option> 
+                        <option value="">Chọn trạng thái</option> 
+                        <option {{ old('status') == 0 ? 'selected' : ''}} value="0">Kích hoạt</option> 
+                        <option {{ old('status') == 1 ? 'selected' : ''}} value="1">Không kích hoạt</option> 
                     </select> 
                     <div style="color:red">{{ $errors->first('status') }}</div>
                   </div> 
@@ -84,13 +84,13 @@
 
 
                   <div class="form-group">
-                    <label>Email address</label>
+                    <label>Email</label>
                     <input type="email" class="form-control" value="{{ old('email') }}" name="email" required placeholder="Email"> 
                     <div style="color:red">{{ $errors->first('email') }}</div>
                   </div>
                   <div class="form-group">
                     <label>Password</label>
-                    <input type="password" class="form-control" name="password" required placeholder="Password">
+                    <input type="password" class="form-control" name="password" required placeholder="Mật khẩu">
                   </div>
 
 
@@ -98,7 +98,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Thêm mới</button>
                 </div>
               </form>
             </div>

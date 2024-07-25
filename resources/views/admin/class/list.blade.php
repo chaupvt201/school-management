@@ -64,7 +64,6 @@
           
           <!--/.col (right) -->
         </div>
-            @include('message')
             <!-- /.card -->
 
             <div class="card card-success">
@@ -83,16 +82,20 @@
                       <th>Thao tác</th> 
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody> 
+                    @php 
+                    $pageNumber = request()->query('page', 1); 
+                    $indexOffset = ($pageNumber - 1)* $getRecord->perPage();
+                    @endphp
                     @foreach($getRecord as $value) 
                     <tr>
-                        <td>{{ $value->id }}</td> 
+                        <td>{{ $loop->iteration + $indexOffset}}</td> 
                         <td>{{ $value->name }}</td> 
                         <td>
                             @if($value->status == 0) 
-                            <div class="btn btn-success">Active </div>
+                            <div class="btn btn-success">Kích hoạt</div>
                             @else 
-                            <div class="btn btn-danger">Inactive </div>
+                            <div class="btn btn-danger">Hủy kích hoạt</div>
                             @endif 
                         </td> 
                         <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td> 

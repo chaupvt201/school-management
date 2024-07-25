@@ -14,7 +14,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>My Account</h1>
+            <h1>Lịch tổng hợp</h1>
           </div>
           
         </div>
@@ -61,7 +61,7 @@
         title: '{{ $valueE['name'] }} - {{ $exam['subject_name']}} ({{ date('h:i A',strtotime($exam['start_time']))}} to {{ date('h:i A',strtotime($exam['end_time']))}})',  
         start: '{{ $exam['exam_date']}}', 
         end: '{{ $exam['exam_date']}}', 
-        color: 'red', 
+        color: 'orange',
         url: '{{url('student/my_exam_timetable')}}'
        })
        @endforeach 

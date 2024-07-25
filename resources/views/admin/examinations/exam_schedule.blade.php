@@ -10,7 +10,6 @@
             <h1>Lịch thi </h1>
           </div> 
           <div class="col-sm-6" style="text-align: right;"> 
-          <a href="{{ url('admin/examinations/exam/add')}}" class="btn btn-primary">Thêm mới lịch thi</a> 
           </div> 
           
         </div>
@@ -73,7 +72,6 @@
           
           <!--/.col (right) -->
         </div>
-            @include('message')
             <!-- /.card -->
 
             @if(!empty($getRecord)) 
@@ -83,7 +81,7 @@
                 <input type="hidden" name="class_id" value="{{ Request::get('class_id')}}">
             <div class="card card-success">
               <div class="card-header">
-                <h3 class="card-title">Danh sách kỳ thi</h3>
+                <h3 class="card-title">Danh sách lịch thi</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">

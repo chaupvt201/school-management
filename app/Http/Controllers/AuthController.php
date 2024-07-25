@@ -47,7 +47,7 @@ class AuthController extends Controller
             }
         } 
         else{
-            return redirect()->back()->with('error', 'Please enter correct email and password'); 
+            return redirect()->back()->with('error', 'Tài khoản hoặc mật khẩu chưa đúng'); 
         }
     } 
     public function forgotpassword(){
@@ -61,11 +61,11 @@ class AuthController extends Controller
             $user->save(); 
             Mail::to($user->email)->send(new ForgotPasswordMail($user));  
 
-            return redirect()->back()->with('success', 'Please check your email and reset your password'); 
+            return redirect()->back()->with('success', 'Vui lòng kiểm tra email và khôi phục mật khẩu'); 
         } 
         else 
         {
-            return redirect()->back()->with('error', 'Email not found in the system'); 
+            return redirect()->back()->with('error', 'Email không tồn tại trong hệ thống'); 
         }
     } 
     public function reset($remember_token) 
@@ -90,11 +90,11 @@ class AuthController extends Controller
             $user->remember_token = Str::random(30); 
             $user->save(); 
 
-            return redirect(url(''))->with('success', "Password successfully reset"); 
+            return redirect(url(''))->with('success', "Khôi phục mật khẩu thành công"); 
         } 
         else 
         {
-            return redirect()->back()->with('error', "Password and confim password does not match"); 
+            return redirect()->back()->with('error', "Mật khẩu và mật khẩu xác thực chưa khớp"); 
         }
     }
     public function logout(){

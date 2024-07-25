@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add New Admin</h1>
+            <h1>Thêm mới người quản trị</h1>
           </div>
           
         </div>
@@ -25,17 +25,17 @@
                 {{csrf_field()}} 
                 <div class="card-body"> 
                 <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" class="form-control" value="{{ old('name') }}" name="name" required placeholder="Name">
+                    <label>Họ tên</label>
+                    <input type="text" class="form-control" value="{{ old('name') }}" name="name" required placeholder="Họ tên">
                   </div>
                   <div class="form-group">
-                    <label>Email address</label>
+                    <label>Email</label>
                     <input type="email" class="form-control" value="{{ old('email') }}" name="email" required placeholder="Email"> 
                     <div style="color:red">{{ $errors->first('email') }}</div>
                   </div>
                   <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" name="password" required placeholder="Password">
+                    <label>Mật khẩu</label>
+                    <input type="password" class="form-control" name="password" required placeholder="Mật khẩu">
                   </div>
                   
 
@@ -43,7 +43,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Thêm mới</button>
                 </div>
               </form>
             </div>

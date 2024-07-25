@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add New Exam</h1>
+            <h1>Thêm kỳ thi</h1>
           </div>
           
         </div>
@@ -25,12 +25,12 @@
                 {{csrf_field()}} 
                 <div class="card-body"> 
                 <div class="form-group">
-                    <label>Exam Name</label>
-                    <input type="text" class="form-control" value="{{ old('name') }}" name="name" required placeholder="Exam name">
+                    <label>Tên kỳ thi</label>
+                    <input type="text" class="form-control" value="{{ old('name') }}" name="name" required placeholder="Tên kỳ thi">
                   </div>
                   <div class="form-group">
-                    <label>Email address</label> 
-                    <textarea class="form-control" name="note" placeholder="Note" style=" resize: none;"></textarea>
+                    <label>Ghi chú</label> 
+                    <textarea class="form-control" name="note" placeholder="Ghi chú" style=" resize: none;"></textarea>
                   </div>
                   
 
@@ -38,7 +38,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Thêm mới</button>
                 </div>
               </form>
             </div>

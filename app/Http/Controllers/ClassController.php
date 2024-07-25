@@ -11,12 +11,12 @@ class ClassController extends Controller
     public function list() 
     { 
         $data['getRecord'] = ClassModel::getRecord(); 
-        $data['header_title'] = 'Class List'; 
+        $data['header_title'] = 'Danh sách lớp học'; 
         return view('admin.class.list', $data); 
     } 
     public function add() 
     {
-        $data['header_title'] = "Add New Class"; 
+        $data['header_title'] = "Thêm lớp học"; 
         return view('admin.class.add', $data); 
     } 
     public function insert(Request $request) 
@@ -28,14 +28,14 @@ class ClassController extends Controller
        // $class->created_by = Auth::user()->id; 
         $class->save(); 
 
-        return redirect('admin/class/list')->with('success', 'Class created successfully'); 
+        return redirect('admin/class/list')->with('success', 'Thêm mới lớp học thành công'); 
     } 
     public function edit($id) 
     { 
         $data['getRecord'] = ClassModel::getSingle($id); 
         if(!empty($data['getRecord'])) 
         {
-            $data['header_title'] = 'Edit Class'; 
+            $data['header_title'] = 'Cập nhật lớp học'; 
             return view('admin.class.edit', $data); 
         } 
         else 
@@ -51,12 +51,12 @@ class ClassController extends Controller
         $class->status = $request->status; 
         $class->save(); 
 
-        return redirect('admin/class/list')->with('success', 'Class updated successfully'); 
+        return redirect('admin/class/list')->with('success', 'Cập nhật lớp học thành công'); 
     } 
     public function delete($id) 
     {
         $class = ClassModel::getSingle($id); 
         $class->delete(); 
-        return redirect()->back()->with('success', 'Class deleted sucessfully'); 
+        return redirect()->back()->with('success', 'Xóa lớp học thành công'); 
     }
 }

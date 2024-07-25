@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>My Subject</h1>
+            <h1>Môn học của tôi</h1>
 
       </div><!-- /.container-fluid -->
     </section>
@@ -41,22 +41,22 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Subject List</h3>
+                <h3 class="card-title">Danh sách môn học</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>Subject Name</th> 
-                      <th>Subject Type</th> 
+                      <th>Môn học</th> 
+                      <th>Loại môn</th> 
                     </tr>
                   </thead>
                   <tbody>
                     @foreach($getRecord as $value) 
                     <tr>
                         <td>{{$value->subject_name}}</td>
-                        <td>{{$value->subject_type}}</td>
+                        <td>{{ ($value->subject_type == 'Theory') ? 'Lý thuyết' : 'Thực hành'}}</td>
                         
                     </tr> 
                     @endforeach 

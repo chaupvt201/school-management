@@ -17,11 +17,11 @@ class ExaminationsController extends Controller
 {
     public function exam_list(){ 
         $data['getRecord'] = ExamModel::getRecord(); 
-        $data['header_title'] = 'Exam List'; 
+        $data['header_title'] = 'Danh sách kỳ thi'; 
         return view('admin.examinations.exam.list', $data); 
     } 
     public function exam_add(){
-        $data['header_title'] = 'Add new exam'; 
+        $data['header_title'] = 'Thêm kỳ thi'; 
         return view('admin.examinations.exam.add', $data); 
     } 
     public function exam_insert(Request $request){
@@ -29,12 +29,12 @@ class ExaminationsController extends Controller
         $exam->name = trim($request->name); 
         $exam->note = trim($request->note); 
         $exam->save(); 
-        return redirect('admin/examinations/exam/list')->with('success', 'Exam created successfully'); 
+        return redirect('admin/examinations/exam/list')->with('success', 'Thêm kỳ thi thành công'); 
     } 
     public function exam_edit($id){ 
         $data['getRecord'] = ExamModel::getSingle($id); 
         if(!empty($data['getRecord'])){
-        $data['header_title'] = 'Edit exam'; 
+        $data['header_title'] = 'Cập nhật kỳ thi'; 
         return view('admin.examinations.exam.edit', $data); 
         } 
         else{
@@ -46,13 +46,13 @@ class ExaminationsController extends Controller
         $exam->name = trim($request->name); 
         $exam->note = trim($request->note); 
         $exam->save(); 
-        return redirect('admin/examinations/exam/list')->with('success', 'Exam Updated Successfully'); 
+        return redirect('admin/examinations/exam/list')->with('success', 'Cập nhật kỳ thi thành công'); 
     } 
     public function exam_delete($id){
         $exam = ExamModel::find($id); 
         if(!empty($exam)){
         $exam->delete(); 
-        return redirect()->back()->with('success', 'Exam delete succesfully'); 
+        return redirect()->back()->with('success', 'Xóa kỳ thi thành công'); 
         } 
         else{
             abort(404); 
@@ -90,7 +90,7 @@ class ExaminationsController extends Controller
             }
         } 
         $data['getRecord'] = $result; 
-        $data['header_title'] = 'exam schedule'; 
+        $data['header_title'] = 'Lịch kiểm tra'; 
         return view('admin.examinations.exam_schedule', $data); 
     } 
     public function exam_schedule_insert(Request $request){ 
@@ -127,7 +127,7 @@ class ExaminationsController extends Controller
                  } 
             }
         } 
-        return redirect()->back()->with('success', 'Exam Schedule saved successfully'); 
+        return redirect()->back()->with('success', 'Lưu lịch kiểm tra thành công'); 
     } 
     public function marks_register(Request $request){
         $data['getClass'] = ClassModel::getClass(); 
@@ -136,7 +136,7 @@ class ExaminationsController extends Controller
             $data['getSubject'] = ExamScheduleModel::getSubject($request->get('exam_id'), $request->get('class_id')); 
             $data['getStudent'] = Student::getStudentClass($request->get('class_id')); 
         }
-        $data['header_title'] = 'Marks Register'; 
+        $data['header_title'] = 'Nhập điểm thi'; 
         return view('admin.examinations.marks_register', $data); 
     } 
     public function marks_register_teacher(Request $request){
@@ -147,7 +147,7 @@ class ExaminationsController extends Controller
             $data['getSubject'] = ExamScheduleModel::getSubject($request->get('exam_id'), $request->get('class_id')); 
             $data['getStudent'] = Student::getStudentClass($request->get('class_id')); 
         }
-        $data['header_title'] = 'Marks Register'; 
+        $data['header_title'] = 'Nhập điểm thi'; 
         return view('teacher.marks_register', $data); 
     }
     public function submit_marks_register(Request $request){ 
@@ -181,9 +181,9 @@ class ExaminationsController extends Controller
             }
         } 
         if($validation == 0){
-            $json['message'] = "Mark Register saved successfuly"; 
+            $json['message'] = "Lưu điểm thi thành công"; 
         } else{
-            $json['message'] = "Mark Register saved successfuly Some Subject mark greater than full mark"; 
+            $json['message'] = "Điểm nhập vào không được lớn hơn điểm tối đa"; 
         }
        
         echo(json_encode($json)); 
@@ -213,10 +213,10 @@ class ExaminationsController extends Controller
            // $marksregister->exam = $exam; 
             $marksregister->save(); 
     
-            $json['message'] = "Mark Register saved successfuly"; 
+            $json['message'] = "Lưu điểm thi thành công"; 
         } 
         else{
-            $json['message'] = "Your total mark greater than full mark"; 
+            $json['message'] = "Điểm nhập vào không được lớn hơn điểm tối đa"; 
         }
 
        
@@ -284,5 +284,30 @@ class ExaminationsController extends Controller
         $data['getRecord'] = $result; 
         $data['header_title'] = 'My Exam Timetable'; 
         return view('teacher.my_exam_timetable', $data); 
+    } 
+    // student side 
+    public function myExamResult(){ 
+        $result = array(); 
+        $student_id = DB::table('student')->where('user_id', Auth::user()->id)->value('id'); 
+        $getExam = MarksRegisterModel::getExam($student_id); 
+        foreach($getExam as $value){
+            $dataE = array(); 
+            $dataE['exam_name'] = $value->exam_name; 
+            $getExamSubject = MarksRegisterModel::getExamSubject($value->exam_id, $student_id); 
+            $dataSubject = array(); 
+            foreach($getExamSubject as $exam){
+                $dataS = array(); 
+                $dataS['subject_name'] = $exam['subject_name']; 
+                $dataS['class_work'] = $exam['class_work']; 
+                $dataS['full_marks'] = $exam['full_marks']; 
+                $dataS['passing_marks'] = $exam['passing_marks']; 
+                $dataSubject[] = $dataS; 
+            } 
+            $dataE['subject'] = $dataSubject; 
+            $result[] = $dataE; 
+        } 
+        $data['getRecord'] = $result; 
+        $data['header_title'] = 'My Exam Result'; 
+        return view('student.my_exam_result', $data); 
     }
 }

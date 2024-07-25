@@ -5,19 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request; 
 use App\Models\User; 
 use App\Models\Teacher; 
+use App\Exports\ExportTeacher; 
 use Hash; 
 use Str; 
 use Illuminate\Support\Facades\DB; 
+use Excel; 
 
 class TeacherController extends Controller
-{
+{ 
+    public function export_excel(Request $request){
+        return Excel::download(new ExportTeacher, 'Teacher_'.date('d-m-Y').'.xls'); 
+    }
     public function list(){
         $data['getRecord'] = User::getTeacher(); 
-        $data['header_title'] = 'Teacher List'; 
+        $data['header_title'] = 'Danh sách giáo viên'; 
         return view('admin.teacher.list', $data); 
     } 
     public function add(){
-        $data['header_title'] = 'Add Teacher'; 
+        $data['header_title'] = 'Thêm giáo viên'; 
         return view('admin.teacher.add'); 
     } 
     public function insert(Request $request){
@@ -26,7 +31,7 @@ class TeacherController extends Controller
             'mobile_number' => 'max:15|min:8'
         ],[
             'email.required' => 'Please enter your email', 
-            'email.unique' => 'Please use another email', 
+            'email.unique' => 'Tài khoản email đã tồn tại Vui lòng nhập địa chỉ email mới', 
         ]); 
         $user = new User; 
         $user->email = trim($request->email); 
@@ -54,7 +59,7 @@ class TeacherController extends Controller
         $teacher->qualification = trim($request->qualification); 
         $teacher->status = trim($request->status); 
         $teacher->save(); 
-        return redirect('admin/teacher/list')->with('success', 'Teacher Added Successfully'); 
+        return redirect('admin/teacher/list')->with('success', 'Thêm mới giáo viên thành công'); 
     } 
     public function edit($id){
         $data['getRecord'] = DB::table('users')
@@ -62,7 +67,7 @@ class TeacherController extends Controller
                                  ->where('users.id', $id)
                                  ->select('users.*', 'teacher.*')->first(); 
         if(!empty($data['getRecord'])){
-        $data['header_title'] = "Edit Teacher"; 
+        $data['header_title'] = "Cập nhật giáo viên"; 
         return view('admin.teacher.edit', $data); 
         } 
         else{
@@ -75,7 +80,7 @@ class TeacherController extends Controller
             'mobile_number' => 'max:15|min:8'
         ],[
             'email.required' => 'Please enter your email', 
-            'email.unique' => 'Please use another email', 
+            'email.unique' => 'Tài khoản email đã tồn tại Vui lòng nhập địa chỉ email khác', 
         ]);  
         $user = User::find($id); 
         $user->email = trim($request->email); 
@@ -105,7 +110,7 @@ class TeacherController extends Controller
         $teacher->qualification = trim($request->qualification); 
         $teacher->status = trim($request->status); 
         $teacher->save(); 
-        return redirect('admin/teacher/list')->with('success', 'Teacher Update Successfully'); 
+        return redirect('admin/teacher/list')->with('success', 'Cập nhật giáo viên thành công'); 
     } 
     public function delete($id){
         $teacher = Teacher::where('user_id', $id)->first(); 
@@ -115,6 +120,6 @@ class TeacherController extends Controller
         $teacher->delete(); 
         $user = User::getSingle($id); 
         $user->delete(); 
-        return redirect()->back()->with('success', 'Teacher Deleted Sucessfuly'); 
+        return redirect()->back()->with('success', 'Xóa giáo viên thành công'); 
     }
 }

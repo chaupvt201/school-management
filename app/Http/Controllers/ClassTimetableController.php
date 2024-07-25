@@ -15,7 +15,7 @@ class ClassTimetableController extends Controller
 {
     public function list(){ 
         $data['getRecord'] = ClassTimetableModel::getRecord(); 
-        $data['header_title'] = 'Class Timetable'; 
+        $data['header_title'] = 'Lịch học'; 
         return view('admin.class_timetable.list', $data); 
     } 
     public function add(){ 
@@ -24,7 +24,7 @@ class ClassTimetableController extends Controller
         // if(!empty($request->class_id)){
         //     $data['getSubject'] = ClassSubjectModel::MySubject($request->class_id); 
         // }
-        $data['header_title'] = 'Add Class Timetable'; 
+        $data['header_title'] = 'Thêm lịch học'; 
         return view('admin.class_timetable.add', $data); 
     } 
     public function get_subject(Request $request){
@@ -57,7 +57,7 @@ class ClassTimetableController extends Controller
         $class_timetable->end_time = trim($request->end_time); 
         $class_timetable->room_number = trim($request->room_number); 
         $class_timetable->save(); 
-        return redirect('admin/class_timetable/list')->with('success', 'Them lich hoc thanh cong'); 
+        return redirect('admin/class_timetable/list')->with('success', 'Thêm lịch học thành công'); 
         }
     } 
     public function edit($id){ 
@@ -77,12 +77,12 @@ class ClassTimetableController extends Controller
         $class_timetable->end_time = trim($request->end_time); 
         $class_timetable->room_number = trim($request->room_number); 
         $class_timetable->save(); 
-        return redirect('admin/class_timetable/list')->with('success', 'Cap nhat lich hoc thanh cong'); 
+        return redirect('admin/class_timetable/list')->with('success', 'Cập nhật lịch học thành công'); 
     } 
     public function delete($id){
         $class_timetable = ClassTimetableModel::find($id); 
         $class_timetable->delete(); 
-        return redirect()->back()->with('success', 'Xoa lich hoc thanh cong'); 
+        return redirect()->back()->with('success', 'Xóa lịch học thành công'); 
     } 
     public function MyClassSubject(){ 
         $teacher_id = DB::table('teacher')->where('user_id', '=', Auth::user()->id)->value('id'); 

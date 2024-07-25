@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add New Class</h1>
+            <h1>Cập nhật lịch học</h1>
           </div>
           
         </div>
@@ -25,27 +25,27 @@
                 {{csrf_field()}} 
                 <div class="card-body"> 
                 <div class="form-group">
-                    <label>Class Name</label>
+                    <label>Lớp</label>
                     <select class='form-control getClass' name="class_id" required>
-                        <option value="">Select Class</option> 
+                        <option value="">Chọn lớp</option> 
                             @foreach($getClass as $class) 
                             <option value="{{ $class->id}}" {{ ($class->id == $getRecord->class_id) ? 'selected': '' }}>{{ $class->name}}</option>
                             @endforeach 
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Subject</label>
+                    <label>Chọn môn học</label>
                     <select class='form-control getSubject' name="subject_id" required>
-                        <option value="">Select Subject<option> 
+                        <option value="">Chọn môn học<option> 
                             @foreach($getSubject as $subject) 
                             <option value="{{ $subject->id}}" {{ ($subject->id == $getRecord->subject_id) ? 'selected' : '' }}>{{ $subject->name}}</option>
                             @endforeach 
                     </select>
                   </div> 
                   <div class="form-group">
-                    <label>Teacher</label> 
+                    <label>Giáo viên</label> 
                     <select class="form-control" name="teacher_id" required>
-                        <option value="">Select Teacher</option> 
+                        <option value="">Chọn giáo viên</option> 
                         @foreach($getTeacher as $teacher) 
                         <option value="{{ $teacher->id }}" {{ ($getRecord->teacher_id == $teacher->id) ? 'selected' : ''}}>{{ $teacher->last_name}} {{$teacher->first_name}}</option>
                         @endforeach 
@@ -54,27 +54,27 @@
                   <div class="form-group">
                     <label>Day</label> 
                     <select class="form-control" name="day" required>
-                        <option value="">Select Day</option> 
-                        <option value="Monday" {{ ($getRecord->day == "Monday") ? 'selected' : '' }}>Monday</option> 
-                        <option value="Tuesday" {{ ($getRecord->day == "Tuesday") ? 'selected' : '' }}>Tuesday</option> 
-                        <option value="Wednesday" {{ ($getRecord->day == "Wednesday") ? 'selected' : '' }}>Wednesday</option> 
-                        <option value="Thursday" {{ ($getRecord->day == "Thursday") ? 'selected' : '' }}>Thursday</option> 
-                        <option value="Friday" {{ ($getRecord->day == "Friday") ? 'selected' : ''}}>Friday</option> 
-                        <option value="Saturday" {{ ($getRecord->day == "Saturday") ? 'selected' : ''}}>Saturday</option> 
-                        <option value="Sunday" {{ ($getRecord->day == "Sunday") ? 'selected' : ''}}>Sunday</option>
+                        <option value="">Chọn ngày</option> 
+                        <option value="Monday" {{ ($getRecord->day == "Monday") ? 'selected' : '' }}>Thứ hai</option> 
+                        <option value="Tuesday" {{ ($getRecord->day == "Tuesday") ? 'selected' : '' }}>Thứ ba</option> 
+                        <option value="Wednesday" {{ ($getRecord->day == "Wednesday") ? 'selected' : '' }}>Thứ tư</option> 
+                        <option value="Thursday" {{ ($getRecord->day == "Thursday") ? 'selected' : '' }}>Thứ năm</option> 
+                        <option value="Friday" {{ ($getRecord->day == "Friday") ? 'selected' : ''}}>Thứ sáu</option> 
+                        <option value="Saturday" {{ ($getRecord->day == "Saturday") ? 'selected' : ''}}>Thứ bảy</option> 
+                        <option value="Sunday" {{ ($getRecord->day == "Sunday") ? 'selected' : ''}}>Chủ nhật</option>
                     </select>
                   </div> 
                   <div class="form-group"> 
-                    <label>Start Time</label> 
+                    <label>Thời gian bắt đầu</label> 
                     <input type="time" class="form-control" name="start_time" value="{{ $getRecord->start_time}}" required>
                   </div> 
                   <div class="form-group">
-                    <label>End Time</label> 
+                    <label>Thời gian kết thúc</label> 
                     <input type="time" class="form-control" name="end_time" value="{{ $getRecord->end_time}}" required> 
                   </div> 
                   <div class="form-group">
-                    <label>Room Number</label> 
-                    <input type="text" class="form-control" name="room_number" value="{{ $getRecord->room_number}}" placeholder="room number" required> 
+                    <label>Phòng học</label> 
+                    <input type="text" class="form-control" name="room_number" value="{{ $getRecord->room_number}}" placeholder="Phòng học" required> 
                   </div>
                   
                   
@@ -83,7 +83,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Cập nhật</button>
                 </div>
               </form>
             </div>

@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add New Class</h1>
+            <h1>Đăng ký môn học</h1>
           </div>
           
         </div>
@@ -25,9 +25,9 @@
                 {{csrf_field()}} 
                 <div class="card-body"> 
                 <div class="form-group">
-                    <label>Class Name</label>
+                    <label>Tên lớp</label>
                     <select class="form-control" name="class_id" required> 
-                        <option value= "">Select Class</option>
+                        <option value= "">Chọn lớp</option>
                         @foreach($getClass as $class) 
                         <option value="{{ $class->id}}">{{ $class->name }}</option>
                         @endforeach 
@@ -36,7 +36,7 @@
 
 
                   <div class="form-group">
-                    <label>Subject Name</label> 
+                    <label>Môn học</label> 
                     @foreach($getSubject as $subject) 
                     <div>
                         <label style="font-weight: normal;">
@@ -46,10 +46,10 @@
                     @endforeach 
                   </div> 
                   <div class="form-group">
-                    <label>Status</label>
+                    <label>Trạng thái</label>
                     <select class="form-control" name="status">
-                        <option value="0">Active</option> 
-                        <option value="1">Inactive</option>
+                        <option value="0">Kích hoạt</option> 
+                        <option value="1">Không kích hoạt</option>
                     </select>
                   </div>
                   
@@ -59,7 +59,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Thêm mới</button>
                 </div>
               </form>
             </div>

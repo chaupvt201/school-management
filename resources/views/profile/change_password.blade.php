@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Change Password</h1>
+            <h1>Đổi mật khẩu</h1>
           </div>
           
         </div>
@@ -26,12 +26,12 @@
                 {{csrf_field()}} 
                 <div class="card-body"> 
                 <div class="form-group">
-                    <label>Old Password</label>
-                    <input type="password" class="form-control" name="old_password" required placeholder="Old Password">
+                    <label>Nhập mật khẩu cũ</label>
+                    <input type="password" class="form-control" name="old_password" required placeholder="Nhập mật khẩu cũ">
                   </div> 
                   <div class="form-group">
-                    <label>New Password</label>
-                    <input type="password" class="form-control" name="new_password" required placeholder="New Password">
+                    <label>Nhập mật khẩu mới</label>
+                    <input type="password" class="form-control" name="new_password" required placeholder="Nhập mật khẩu mới">
                   </div>
                   
                   
@@ -41,7 +41,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Update</button>
+                  <button type="submit" class="btn btn-primary">Cập nhật</button>
                 </div>
               </form>
             </div>

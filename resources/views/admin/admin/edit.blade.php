@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add New Admin</h1>
+            <h1>Cập nhật tài khoản người quản trị</h1>
           </div>
           
         </div>
@@ -26,18 +26,18 @@
                 <div class="card-body"> 
                   @foreach($getRecord as $value)
                 <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" class="form-control" name="name" value="{{ old('name', $value->name)}}" required placeholder="Name">
+                    <label>Họ tên</label>
+                    <input type="text" class="form-control" name="name" value="{{ old('name', $value->name)}}" required placeholder="Họ tên">
                   </div>
                   <div class="form-group">
-                    <label>Email address</label>
+                    <label>Email</label>
                     <input type="email" class="form-control" name="email" value="{{ old('email', $value->email)}}" required placeholder="Email"> 
                     <div style="color:red">{{ $errors->first('email') }}</div>
                   </div>
                   <div class="form-group">
-                    <label>Password</label>
-                    <input type="text" class="form-control" name="password" placeholder="Password"> 
-                    <p>Do you want to change password so Please add new password</p>
+                    <label>Mật khẩu</label>
+                    <input type="text" class="form-control" name="password" placeholder="Mật khẩu"> 
+                    <p>Cập nhật lại mật khẩu nếu cần</p>
                   </div> 
                   @endforeach 
                   
@@ -46,7 +46,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Update</button> 
+                  <button type="submit" class="btn btn-primary">Cập nhật</button> 
                 </div>
               </form>
             </div>

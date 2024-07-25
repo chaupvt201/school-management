@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>My Class & Subject</h1>
+            <h1>Phân công giảng dạy</h1>
           </div> 
           
         </div>
@@ -36,16 +36,16 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Class List</h3>
+                <h3 class="card-title">Danh sách lớp</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>Class</th>
-                      <th>Subject Name</th> 
-                      <th>Subject Type</th>
+                      <th>Lớp</th>
+                      <th>Môn học</th> 
+                      <th>Loại môn</th>
                     </tr>
                   </thead>
                   <tbody> 
@@ -53,7 +53,7 @@
                     <tr>
                         <td>{{$value->class_name}}</td> 
                         <td>{{$value->subject_name}}</td> 
-                        <td>{{$value->subject_type}}</td>
+                        <td>{{ ($value->subject_type == 'Theory') ? 'Lý thuyết' : 'Thực hành'}}</td>
                     </tr>
                     @endforeach 
                   </tbody>

@@ -36,14 +36,14 @@
                   <div class="row">
                 <div class="form-group col-md-3">
                     <label>Tên môn</label>
-                    <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name" placeholder="Name">
+                    <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name" placeholder="Tên môn">
                   </div> 
                   <div class="form-group col-md-3">
                     <label>Loại môn</label> 
                     <select class="form-control" name="type"> 
-                        <option value="">Select Type</option>
-                        <option {{ (Request::get('type') == 'Theory') ? 'selected' : '' }} value="Theory">Theory</option> 
-                        <option {{ (Request::get('type') == 'Practical') ? 'selected' : '' }} value="Practical">Practical</option>
+                        <option value="">Chọn loại môn</option>
+                        <option {{ (Request::get('type') == 'Theory') ? 'selected' : '' }} value="Theory">Lý thuyết</option> 
+                        <option {{ (Request::get('type') == 'Practical') ? 'selected' : '' }} value="Practical">Thực hành</option>
                     </select>
                   </div>
 
@@ -72,7 +72,6 @@
           
           <!--/.col (right) -->
         </div>
-            @include('message')
             <!-- /.card -->
 
             <div class="card card-success">
@@ -92,17 +91,26 @@
                       <th>Thao tác</th> 
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody> 
+                    @php 
+                    $pageNumber = request()->query('page', 1); 
+                    $indexOffset = ($pageNumber - 1)* $getRecord->perPage();
+                    @endphp 
                     @foreach($getRecord as $value) 
                     <tr>
-                        <td>{{ $value->id }}</td> 
+                        <td>{{ $loop->iteration + $indexOffset}}</td> 
                         <td>{{ $value->name }}</td> 
-                        <td>{{ $value->type }}</td> 
+                        <td>@if($value->type == "Theory") 
+                          Lý thuyết
+                          @else 
+                          Thực hành
+                          @endif 
+                        </td> 
                         <td>
                             @if($value->status == 0) 
-                            <div class="btn btn-success">Active </div>
+                            <div class="btn btn-success">Kích hoạt </div>
                             @else 
-                            <div class="btn btn-danger">Inactive </div>
+                            <div class="btn btn-danger">Không kích hoạt </div>
                             @endif 
                         </td> 
                         <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td> 

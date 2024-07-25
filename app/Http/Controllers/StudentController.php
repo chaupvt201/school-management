@@ -6,21 +6,26 @@ use Illuminate\Http\Request;
 use App\Models\User; 
 use App\Models\Student; 
 use App\Models\ClassModel; 
+use App\Exports\ExportStudent; 
 use Hash; 
 use Str; 
 use Illuminate\Support\Facades\DB; 
 use Auth; 
+use Excel; 
 
 class StudentController extends Controller
-{
+{ 
+    public function export_excel(Request $request){
+        return Excel::download(new ExportStudent, 'Student_'.date('d-m-Y').'.xls'); 
+    }
     public function list(){
         $data['getRecord'] = User::getStudent(); 
-        $data['header_title'] = "Student List"; 
+        $data['header_title'] = "Danh sách học viên"; 
         return view('admin.student.list', $data); 
     } 
     public function add(){ 
         $data['getClass'] = ClassModel::getClass(); 
-        $data['header_title'] = 'Add Student'; 
+        $data['header_title'] = 'Thêm học viên mới'; 
         return view('admin.student.add', $data); 
     } 
     public function insert(Request $request){ 
@@ -29,7 +34,7 @@ class StudentController extends Controller
             'mobile_number' => 'max:15|min:8'
         ],[
             'email.required' => 'Please enter your email', 
-            'email.unique' => 'Please use another email', 
+            'email.unique' => 'Tài khoản email đã tồn tại Vui lòng nhập địa chỉ email khác', 
         ]); 
         $user = new User; 
         $user->email = trim($request->email); 
@@ -58,7 +63,7 @@ class StudentController extends Controller
         $student->status = trim($request->status); 
         $student->save(); 
         
-        return redirect('admin/student/list')->with('success', 'Student Addes Successfully'); 
+        return redirect('admin/student/list')->with('success', 'Thêm mới học viên thành công'); 
 
     } 
     public function edit($id){
@@ -66,7 +71,7 @@ class StudentController extends Controller
        $data['getRecord'] = DB::table('users')->join('student', 'student.user_id', '=', 'users.id')->where('users.id', $id)->select('users.*', 'student.*')->first(); 
         if(!empty($data['getRecord'])){
             $data['getClass'] = ClassModel::getClass(); 
-            $data['header_title'] = "Edit Student"; 
+            $data['header_title'] = "Cập nhật học viên"; 
             return view('admin.student.edit', $data); 
         }else{
             abort(404); 
@@ -78,7 +83,7 @@ class StudentController extends Controller
             'mobile_number' => 'max:15|min:8'
         ],[
             'email.required' => 'Please enter your email', 
-            'email.unique' => 'Please use another email', 
+            'email.unique' => 'Tài khoản email đã tồn tại Vui lòng nhập địa chỉ email khác', 
         ]); 
         $user = User::find($id); 
         $user->email = trim($request->email); 
@@ -108,7 +113,7 @@ class StudentController extends Controller
         $student->save(); 
 
          
-        return redirect('admin/student/list')->with('success', 'Student Updated Successfully'); 
+        return redirect('admin/student/list')->with('success', 'Cập nhật học viên thành công'); 
     } 
     public function delete($id){
         $student = Student::where('user_id', $id)->first(); 
@@ -118,7 +123,7 @@ class StudentController extends Controller
         $student->delete(); 
         $user = User::getSingle($id); 
         $user->delete(); 
-        return redirect()->back()->with('success', 'Student Deleted Sucessfuly'); 
+        return redirect()->back()->with('success', 'Xóa học viên thành công'); 
     } 
     // teacher work side 
     public function MyStudent(){ 

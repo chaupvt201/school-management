@@ -20,7 +20,7 @@ class UserController extends Controller
                                     ->where('users.id', Auth::user()->id) 
                                     ->select('users.*', 'admin.admin_name')
                                     ->first(); 
-        $data['header'] = "My Account"; 
+        $data['header'] = "Cập nhật tài khoản"; 
         return view('admin.my_account', $data); 
         }
         elseif(Auth::user()->user_type == 2){
@@ -28,7 +28,7 @@ class UserController extends Controller
                                 ->join('teacher', 'teacher.user_id', 'users.id')
                                 ->where('users.id', Auth::user()->id) 
                                 ->first(); 
-        $data['header_title'] = "My Account"; 
+        $data['header_title'] = "Cập nhật tài khoản"; 
         return view('teacher.my_account', $data); 
         } 
         elseif(Auth::user()->user_type == 3){
@@ -36,7 +36,7 @@ class UserController extends Controller
                                 ->join('student', 'student.user_id', 'users.id')
                                 ->where('users.id', Auth::user()->id) 
                                 ->first(); 
-        $data['header_title'] = "My Account"; 
+        $data['header_title'] = "Cập nhật tài khoản"; 
         return view('student.my_account', $data); 
         }
     } 
@@ -45,7 +45,7 @@ class UserController extends Controller
         $request->validate([
             'email' => 'required|email|unique:users,email,'.$id
         ],[
-            'email.unique' => 'Please use another email'
+            'email.unique' => 'Tài khoản email đã tồn tại Vui lòng nhập email khác'
         ]); 
         $user = User::find($id); 
         $user->email = trim($request->email); 
@@ -53,7 +53,7 @@ class UserController extends Controller
         $admin = Admin::where('user_id', $id)->first(); 
         $admin->admin_name = trim($request->name); 
         $admin->save(); 
-        return redirect()->back()->with('success', 'Account Updated Successfully'); 
+        return redirect()->back()->with('success', 'Cập nhật tài khoản thành công'); 
 
 
     }
@@ -64,7 +64,7 @@ class UserController extends Controller
             'mobile_number' => 'max:15|min:8'
         ],[
             'email.required' => 'Please enter your email', 
-            'email.unique' => 'Please use another email', 
+            'email.unique' => 'Tài khoản email đã tồn tại Vui lòng nhập email khác', 
         ]);  
         $user = User::find($id); 
         $user->email = trim($request->email); 
@@ -90,7 +90,7 @@ class UserController extends Controller
         $teacher->address = trim($request->address); 
         $teacher->qualification = trim($request->qualification); 
         $teacher->save(); 
-        return redirect()->back()->with('success', 'Account Updated Successfully'); 
+        return redirect()->back()->with('success', 'Cập nhật tài khoản thành công'); 
     } 
     public function UpdateMyAccountStudent(Request $request){ 
         $id = Auth::user()->id; 
@@ -99,7 +99,7 @@ class UserController extends Controller
             'mobile_number' => 'max:15|min:8'
         ],[
             'email.required' => 'Please enter your email', 
-            'email.unique' => 'Please use another email', 
+            'email.unique' => 'Tài khoản email đã tồn tại Vui lòng nhập email khác', 
         ]); 
         $user = User::find($id); 
         $user->email = trim($request->email); 
@@ -122,7 +122,7 @@ class UserController extends Controller
             $student->profile_pic = $filename; 
         } 
         $student->save(); 
-        return redirect()->back()->with('success', 'Account Updated Successfully'); 
+        return redirect()->back()->with('success', 'Cập nhật tài khoản thành công'); 
     }
     public function change_password(){
         $data['header_title'] = "Chang Password"; 
@@ -133,9 +133,9 @@ class UserController extends Controller
         if(Hash::check($request->old_password, $user->password)){
             $user->password = Hash::make($request->new_password); 
             $user->save(); 
-            return redirect()->back()->with('success', 'Password update successfully'); 
+            return redirect()->back()->with('success', 'Cập nhật mật khẩu thành công'); 
         }else{
-            return redirect()->back()->with('error', 'Old Passowrd is not Correct'); 
+            return redirect()->back()->with('error', 'Mật khẩu cũ chưa chính xác'); 
         }
     }
 }

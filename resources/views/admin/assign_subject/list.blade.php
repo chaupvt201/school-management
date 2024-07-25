@@ -36,11 +36,11 @@
                   <div class="row">
                 <div class="form-group col-md-3">
                     <label>Tên lớp</label>
-                    <input type="text" class="form-control" value="{{ Request::get('class_name') }}" name="class_name" placeholder="Class Name">
+                    <input type="text" class="form-control" value="{{ Request::get('class_name') }}" name="class_name" placeholder="Tên lớp">
                   </div> 
                   <div class="form-group col-md-3">
                     <label>Tên môn</label>
-                    <input type="text" class="form-control" value="{{ Request::get('subject_name') }}" name="subject_name" placeholder="Subject Name">
+                    <input type="text" class="form-control" value="{{ Request::get('subject_name') }}" name="subject_name" placeholder="Tên môn">
                   </div>
 
                   <div class="form-group col-md-3">
@@ -68,7 +68,6 @@
           
           <!--/.col (right) -->
         </div>
-            @include('message')
             <!-- /.card -->
 
             <div class="card card-success">
@@ -88,23 +87,27 @@
                       <th>Thao tác</th> 
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody> 
+                    @php 
+                    $pageNumber = request()->query('page', 1); 
+                    $indexOffset = ($pageNumber - 1)* $getRecord->perPage();
+                    @endphp 
                   @foreach($getRecord as $value) 
                     <tr>
-                        <td>{{ $value->id }}</td> 
+                        <td>{{ $loop->iteration + $indexOffset}}</td> 
                         <td>{{ $value->class_name }}</td> 
                         <td>{{ $value->subject_name }}</td>
                         <td>
                             @if($value->status == 0) 
-                            <div class="btn btn-success">Active </div>
+                            <div class="btn btn-success">Kích hoạt </div>
                             @else 
-                            <div class="btn btn-danger">Inactive </div>
+                            <div class="btn btn-danger">Hủy kích hoạt </div>
                             @endif 
                         </td> 
                         <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td> 
                         <td>
-                        <a href="{{ url('admin/assign_subject/edit/'.$value->id)}}" class="btn btn-warning">Sửa</a> 
-                        <!-- <a href="{{ url('admin/assign_subject/edit_single/'.$value->id)}}" class="btn btn-primary">Edit Single</a> -->
+                        <a href="{{ url('admin/assign_subject/edit/'.$value->id)}}" class="btn btn-warning">Sửa chung</a> 
+                        <a href="{{ url('admin/assign_subject/edit_single/'.$value->id)}}" class="btn btn-primary">Sửa đơn</a>
                         <a onclick="confirmation(event)" href="{{url('admin/assign_subject/delete/'.$value->id)}}" class="btn btn-danger">Xóa</a>
                         </td>
                     </tr>
